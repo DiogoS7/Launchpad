@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Date__c</fullName>
+    <description>Stamped by automation when the task is completed.</description>
+    <inlineHelpText>When this task was completed.</inlineHelpText>
+    <label>Completed Date</label>
+    <required>false</required>
+    <type>Date</type>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Hire__c</fullName>
+    <description>The employee being onboarded. Required on the page layout (User lookups cannot be required at field level).</description>
+    <inlineHelpText>The person joining the company.</inlineHelpText>
+    <label>New Hire</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Onboarding_Plans_As_New_Hire</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+    <trackHistory>true</trackHistory>
+</CustomField>

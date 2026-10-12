@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Buddy_Required_After_Draft</fullName>
+    <active>true</active>
+    <description>VR-01 (FR-05): a buddy is required before the plan leaves Draft.</description>
+    <errorConditionFormula>NOT(ISPICKVAL(Status__c, "Draft")) &amp;&amp; NOT(ISPICKVAL(Status__c, "Cancelled")) &amp;&amp; ISBLANK(Buddy__c)</errorConditionFormula>
+    <errorDisplayField>Buddy__c</errorDisplayField>
+    <errorMessage>Assign a buddy before moving the plan out of Draft.</errorMessage>
+</ValidationRule>

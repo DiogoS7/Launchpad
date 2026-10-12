@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_Date__c</fullName>
+    <description>Start date plus the template's due offset.</description>
+    <inlineHelpText>When this task should be done.</inlineHelpText>
+    <label>Due Date</label>
+    <required>false</required>
+    <type>Date</type>
+    <trackHistory>true</trackHistory>
+</CustomField>

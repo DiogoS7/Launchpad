@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Requires_All_Tasks_Done</fullName>
+    <active>true</active>
+    <description>VR-03 (FR-19): a plan cannot be completed while it has open tasks.</description>
+    <errorConditionFormula>ISPICKVAL(Status__c, "Completed") &amp;&amp; Completed_Tasks__c &lt; Total_Tasks__c</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>All onboarding tasks must be completed before the plan can be completed.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Requires_Assessment</fullName>
+    <active>true</active>
+    <description>VR-03 (FR-20): completing a plan requires the independence date and manager assessment.</description>
+    <errorConditionFormula>ISPICKVAL(Status__c, "Completed") &amp;&amp; (ISBLANK(Independence_Date__c) || ISBLANK(Manager_Assessment__c))</errorConditionFormula>
+    <errorDisplayField>Independence_Date__c</errorDisplayField>
+    <errorMessage>Enter the independence date and your assessment before completing the plan.</errorMessage>
+</ValidationRule>

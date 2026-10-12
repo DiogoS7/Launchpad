@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Responsibilities__c</fullName>
+    <description>Role Brief: what the new hire is responsible for.</description>
+    <inlineHelpText>What this person is responsible for in their role.</inlineHelpText>
+    <label>Responsibilities</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+    <trackHistory>false</trackHistory>
+</CustomField>

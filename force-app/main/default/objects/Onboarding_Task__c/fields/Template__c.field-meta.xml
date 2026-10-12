@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Template__c</fullName>
+    <description>Template this task was generated from, if any.</description>
+    <inlineHelpText>The template this task came from.</inlineHelpText>
+    <label>Template</label>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <referenceTo>Onboarding_Task_Template__c</referenceTo>
+    <relationshipLabel>Onboarding Tasks</relationshipLabel>
+    <relationshipName>Onboarding_Tasks</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+    <trackHistory>false</trackHistory>
+</CustomField>

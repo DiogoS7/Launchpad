@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Guide_Link__c</fullName>
+    <description>Link to the Knowledge article that explains the task, copied from the template.</description>
+    <inlineHelpText>Open this guide for step-by-step instructions.</inlineHelpText>
+    <label>Guide Link</label>
+    <required>false</required>
+    <type>Url</type>
+    <trackHistory>false</trackHistory>
+</CustomField>

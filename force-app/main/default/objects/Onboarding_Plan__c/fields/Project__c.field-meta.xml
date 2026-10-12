@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project__c</fullName>
+    <description>Project the new hire is assigned to. Assigning it generates the project handover tasks.</description>
+    <inlineHelpText>The first project this person joins.</inlineHelpText>
+    <label>Project</label>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <referenceTo>Project__c</referenceTo>
+    <relationshipLabel>Onboarding Plans</relationshipLabel>
+    <relationshipName>Onboarding_Plans</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+    <trackHistory>true</trackHistory>
+</CustomField>

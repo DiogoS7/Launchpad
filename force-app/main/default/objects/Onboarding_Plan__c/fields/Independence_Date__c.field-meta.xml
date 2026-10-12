@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Independence_Date__c</fullName>
+    <description>Date the manager confirms the new hire works independently. Required to complete the plan.</description>
+    <inlineHelpText>When this person started working independently.</inlineHelpText>
+    <label>Independence Date</label>
+    <required>false</required>
+    <type>Date</type>
+    <trackHistory>true</trackHistory>
+</CustomField>

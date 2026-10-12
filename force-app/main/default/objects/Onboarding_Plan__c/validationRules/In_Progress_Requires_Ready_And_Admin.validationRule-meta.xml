@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Progress_Requires_Ready_And_Admin</fullName>
+    <active>true</active>
+    <description>VR-02 (FR-08): a plan can only start from Ready, with the admin phase complete.</description>
+    <errorConditionFormula>ISPICKVAL(Status__c, "In Progress") &amp;&amp; (
+    NOT(Admin_Phase_Complete__c) ||
+    ISNEW() ||
+    (ISCHANGED(Status__c) &amp;&amp; NOT(ISPICKVAL(PRIORVALUE(Status__c), "Ready")))
+)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>A plan can only move to In Progress from Ready, and only once the admin phase is marked complete.</errorMessage>
+</ValidationRule>

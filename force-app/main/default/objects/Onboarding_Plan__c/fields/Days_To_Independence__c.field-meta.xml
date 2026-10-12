@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_To_Independence__c</fullName>
+    <description>Formula: days from start date to independence date. Feeds the HR dashboard.</description>
+    <inlineHelpText>Days it took to work independently.</inlineHelpText>
+    <label>Days to Independence</label>
+    <formula>IF(ISBLANK(Independence_Date__c), NULL, Independence_Date__c - Start_Date__c)</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+    <trackHistory>false</trackHistory>
+</CustomField>
