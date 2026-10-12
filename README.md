@@ -1,4 +1,4 @@
-# Launchpad
+﻿# Launchpad
 
 **Employee onboarding on Salesforce, from role preparation to independence.**
 
@@ -40,7 +40,7 @@ Every new hire gets one **onboarding plan** with an owner for each step:
 
 | What a new hire sees | HR dashboard |
 |---|---|
-| ![Employee view](docs/screenshots/06-employee-view.png) | ![Dashboard](docs/screenshots/05-dashboard.png) |
+| ![Employee view](docs/screenshots/05-employee-view.png) | ![Dashboard](docs/screenshots/04-dashboard.png) |
 
 ## Business analysis
 
@@ -65,7 +65,7 @@ Everything is declarative and stored in this repository as Salesforce metadata, 
 | **Reporting** | 2 custom report types, 4 reports, and a dynamic dashboard that respects each viewer's access |
 | **User experience** | Lightning app with tabs for each object, page layouts with help text on every field |
 
-![Task generation Flow](docs/screenshots/07-flow-builder.png)
+![Task generation Flow](docs/screenshots/06-flow-builder.png)
 
 ## Personas
 
