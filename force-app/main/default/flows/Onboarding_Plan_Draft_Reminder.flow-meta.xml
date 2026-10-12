@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Reminder</name>
+        <label>Send Reminder</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value><elementReference>$Record.Hiring_Manager__r.Email</elementReference></value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value><stringValue>Launchpad: an onboarding plan is still in Draft</stringValue></value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value><elementReference>ttBody</elementReference></value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <description>AU-02 (FR-06): if a plan is still in Draft 7 calendar days (about 5 working days) before the start date, emails the hiring manager. The scheduled path is cancelled automatically if the plan leaves Draft first.</description>
+    <environments>Default</environments>
+    <interviewLabel>Onboarding Plan: Draft Reminder {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Onboarding Plan: Draft Reminder</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value><stringValue>Draft</stringValue></value>
+        </filters>
+        <filters>
+            <field>Hiring_Manager__c</field>
+            <operator>IsNull</operator>
+            <value><booleanValue>false</booleanValue></value>
+        </filters>
+        <object>Onboarding_Plan__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Seven_Days_Before_Start</name>
+            <connector><targetReference>Send_Reminder</targetReference></connector>
+            <label>7 Days Before Start</label>
+            <offsetNumber>-7</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Start_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>ttBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hi {!$Record.Hiring_Manager__r.FirstName},
+
+The onboarding plan {!$Record.Name} for {!$Record.New_Hire__r.Name} starts on {!$Record.Start_Date__c} and is still in Draft.
+
+Please complete the Role Brief and assign a buddy so HR can set the plan to Ready before the first day.
+
+Launchpad</text>
+    </textTemplates>
+</Flow>
