@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14306B"/>
+      <stop offset="1" stop-color="#0B3D91"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD166"/>
+      <stop offset="0.55" stop-color="#FF8A3D"/>
+      <stop offset="1" stop-color="#E5484D" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D6E0F5"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- stars -->
+  <g fill="#FFFFFF">
+    <circle cx="96" cy="104" r="6" opacity="0.9"/>
+    <circle cx="410" cy="84" r="5" opacity="0.8"/>
+    <circle cx="430" cy="196" r="4" opacity="0.6"/>
+    <circle cx="70" cy="230" r="4" opacity="0.6"/>
+    <circle cx="150" cy="60" r="3" opacity="0.5"/>
+    <path d="M372 140 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6z" opacity="0.9"/>
+  </g>
+  <!-- launch tower -->
+  <g stroke="#7FA6E8" stroke-width="8" stroke-linecap="round" fill="none">
+    <line x1="150" y1="168" x2="150" y2="408"/>
+    <line x1="184" y1="168" x2="184" y2="408"/>
+    <line x1="150" y1="200" x2="184" y2="232"/>
+    <line x1="184" y1="232" x2="150" y2="264"/>
+    <line x1="150" y1="264" x2="184" y2="296"/>
+    <line x1="184" y1="296" x2="150" y2="328"/>
+    <line x1="150" y1="328" x2="184" y2="360"/>
+    <line x1="184" y1="360" x2="150" y2="392"/>
+    <line x1="184" y1="232" x2="226" y2="232"/>
+    <line x1="184" y1="320" x2="226" y2="320"/>
+  </g>
+  <!-- flame -->
+  <path d="M256 388 C 236 420, 238 452, 256 482 C 274 452, 276 420, 256 388 Z" fill="url(#flame)"/>
+  <!-- fins -->
+  <path d="M226 318 L188 372 L188 396 L232 372 Z" fill="#E5484D"/>
+  <path d="M286 318 L324 372 L324 396 L280 372 Z" fill="#E5484D"/>
+  <!-- body -->
+  <path d="M256 104 C 296 140, 300 230, 290 330 L 286 384 L 226 384 L 222 330 C 212 230, 216 140, 256 104 Z" fill="url(#body)"/>
+  <!-- nose cone band -->
+  <path d="M256 104 C 274 120, 284 140, 289 164 L 223 164 C 228 140, 238 120, 256 104 Z" fill="#E5484D"/>
+  <!-- window -->
+  <circle cx="256" cy="232" r="30" fill="#0B3D91" stroke="#7FA6E8" stroke-width="8"/>
+  <circle cx="246" cy="222" r="8" fill="#FFFFFF" opacity="0.7"/>
+  <!-- centre fin -->
+  <rect x="250" y="320" width="12" height="70" rx="6" fill="#C93A3F"/>
+  <!-- pad -->
+  <rect x="120" y="404" width="272" height="20" rx="10" fill="#7FA6E8"/>
+  <rect x="160" y="424" width="16" height="36" rx="4" fill="#7FA6E8"/>
+  <rect x="336" y="424" width="16" height="36" rx="4" fill="#7FA6E8"/>
+</svg>
