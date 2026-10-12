@@ -17,6 +17,7 @@
     <tabs>Onboarding_Task__c</tabs>
     <tabs>Project__c</tabs>
     <tabs>Onboarding_Task_Template__c</tabs>
+    <tabs>Tool_Guide__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>

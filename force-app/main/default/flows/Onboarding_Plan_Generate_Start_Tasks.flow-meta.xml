@@ -47,6 +47,11 @@
             <value><elementReference>Loop_Templates.Guide_Link__c</elementReference></value>
         </assignmentItems>
         <assignmentItems>
+            <assignToReference>varTask.Tool_Guide__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Loop_Templates.Tool_Guide__c</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
             <assignToReference>varTask.Description__c</assignToReference>
             <operator>Assign</operator>
             <value><elementReference>Loop_Templates.Description__c</elementReference></value>

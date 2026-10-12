@@ -25,6 +25,7 @@
         <editHeading>true</editHeading>
         <label>Instructions</label>
         <layoutColumns>
+            <layoutItems><behavior>Edit</behavior><field>Tool_Guide__c</field></layoutItems>
             <layoutItems><behavior>Edit</behavior><field>Guide_Link__c</field></layoutItems>
             <layoutItems><behavior>Edit</behavior><field>Description__c</field></layoutItems>
         </layoutColumns>

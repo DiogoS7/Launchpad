@@ -3,7 +3,7 @@
 **Project:** Launchpad
 **Document:** 02 · TO-BE Process Design
 **Author:** Diogo Santos
-**Status:** Draft v0.1
+**Status:** v0.2 (updated after build)
 **Depends on:** [01 · AS-IS Process Analysis](01-as-is-process.md)
 
 ---
@@ -68,7 +68,7 @@ flowchart TD
         L --> O[Manager assigns New Hire to a project]
         O --> P[Project Handover checklist created for Project Lead:<br/>overview, key contacts, documentation, first task]
         P --> Q[Project Lead completes handover with New Hire]
-        M --> R[New Hire completes guides using Knowledge articles]
+        M --> R[New Hire completes tasks using Tool Guides]
         Q --> S{All tasks complete?}
         R --> S
         N --> S
@@ -91,7 +91,7 @@ flowchart TD
 | 6 | Complete admin phase | HR Specialist | Single checkbox confirming Phases 1–2 are done | None |
 | 7 | Start plan and generate tasks | System | Onboarding tasks created from templates matching the role | Flow on status change to In Progress |
 | 8 | Confirm Role Brief | New Hire | Task to read the brief and confirm, with comments | None |
-| 9 | Learn internal tools | New Hire | Tasks link to Knowledge articles for each tool | Created in step 7 |
+| 9 | Learn internal tools | New Hire | Tasks link to a Tool Guide for each tool | Created in step 7 |
 | 10 | Weekly buddy check-ins | Buddy | Four recurring tasks in the first month | Created in step 7 |
 | 11 | Assign to project | Hiring Manager | Project field on the plan | None |
 | 12 | Project handover | Project Lead | Handover checklist: overview, contacts, documentation links, first task | Flow when project is assigned |
@@ -107,8 +107,8 @@ Every pain point from the AS-IS analysis maps to at least one change in the new 
 |---|---|---|
 | PP-01 · Unstructured project knowledge transfer | Standard Project Handover checklist, owned by the Project Lead and created automatically | 11, 12 |
 | PP-02 · Responsibilities not clearly communicated | Role Brief written before day one and confirmed by the new hire | 3, 8 |
-| PP-03 · Internal tools learned by trial and error | Tool guide tasks linked to Knowledge articles | 9 |
-| PP-04 · Same questions answered repeatedly | Knowledge articles as the single source of answers; an Agentforce agent answers from them in a later phase | 9 |
+| PP-03 · Internal tools learned by trial and error | Tool guide tasks linked to Tool Guide records | 9 |
+| PP-04 · Same questions answered repeatedly | Tool Guides as the single source of answers; an Agentforce agent answers from them in a later phase | 9 |
 | PP-05 · No visibility after day one | All tasks tracked in Salesforce with reminders and an HR dashboard | 7, 13, 15 |
 | PP-06 · No formal buddy | Buddy required before the plan can start; weekly check-ins scheduled | 4, 10 |
 
@@ -133,16 +133,17 @@ Measured against the assumed baseline in the AS-IS document.
 
 | Release | Scope | Related certification |
 |---|---|---|
-| v1 · Core app | Onboarding Plan, tasks from templates, Role Brief, buddy, project handover, Knowledge tool guides, reminders, dashboard | Platform App Builder, Business Analyst |
-| v2 · Agentforce | An employee agent that answers onboarding and tool questions from the Knowledge articles and reports task status to the new hire | Agentblazer, Agentforce Specialist |
+| v1 · Core app | Onboarding Plan, tasks from templates, Role Brief, buddy, project handover, tool guides, reminders, dashboard | Platform App Builder, Business Analyst |
+| v2 · Agentforce | An employee agent that answers onboarding and tool questions from the Tool Guides and reports task status to the new hire | Agentblazer, Agentforce Specialist |
 | v3 · Claude | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Claude / Anthropic certifications |
 
 ## 11. Assumptions and decisions
 
 - **A1.** Every new hire and stakeholder has a Salesforce user. In the Developer Edition org, which has a limited number of user licences, the other roles are represented by sample records for demonstration.
-- **A2.** Salesforce Knowledge can be enabled in the Developer Edition org. To be verified during build; if it can't, tool guides fall back to a custom object.
 - **D1.** v1 uses one shared set of task templates for all new hires. The plan records the role, so role-specific templates can be added in a later release without changing the data model.
 - **D2.** New hires can see their own onboarding plan and update their own tasks in v1.
+- **D3.** Tool guides are a custom Tool Guide object rather than Salesforce Knowledge (replaces assumption A2). See the BRD, section 12.
+- **D4.** Overdue reminders are sent once, the day after the due date, rather than daily. See the BRD, section 12.
 
 ## 12. Next step
 

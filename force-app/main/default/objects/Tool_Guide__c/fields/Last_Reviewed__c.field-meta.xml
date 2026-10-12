@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Reviewed__c</fullName>
+    <description>Date the guide was last checked by HR. Keeps answers current.</description>
+    <inlineHelpText>When this guide was last checked.</inlineHelpText>
+    <label>Last Reviewed</label>
+    <required>false</required>
+    <type>Date</type>
+    <trackHistory>true</trackHistory>
+</CustomField>

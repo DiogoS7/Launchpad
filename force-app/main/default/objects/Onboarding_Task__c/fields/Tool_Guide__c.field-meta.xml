@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tool_Guide__c</fullName>
+    <description>Guide for this task, copied from the template (FR-13).</description>
+    <inlineHelpText>Open this guide for step-by-step instructions.</inlineHelpText>
+    <label>Tool Guide</label>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <referenceTo>Tool_Guide__c</referenceTo>
+    <relationshipLabel>Onboarding Tasks</relationshipLabel>
+    <relationshipName>Onboarding_Tasks</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+    <trackHistory>true</trackHistory>
+</CustomField>

@@ -1,0 +1,40 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "Tool_Guide__c",
+        "referenceId": "GuideTimesheets"
+      },
+      "Name": "How to report your hours in Atlântica TimeTrack",
+      "Tool__c": "Timesheets",
+      "Summary__c": "Submit your weekly hours correctly and on time.",
+      "Content__c": "<h2>When to submit</h2><p>Hours are submitted <b>weekly, by Friday at 18:00</b>. Late timesheets delay client invoicing, so set a recurring reminder for Friday afternoon.</p><h2>Step by step</h2><ol><li>Open <b>TimeTrack</b> from the intranet home page and sign in with your company account.</li><li>Select the current week. Each project you are assigned to appears as a row; if your project is missing, ask your project lead to add you.</li><li>Enter your hours per day against the right project and activity code. Internal time (training, onboarding) goes on the <b>INT-ONB</b> code during your first month.</li><li>Add a short comment for any day over 8 hours.</li><li>Click <b>Submit week</b>. Your project lead approves it; you get an email if it is rejected.</li></ol><h2>Common mistakes</h2><ul><li>Saving without submitting: saved weeks are not sent for approval.</li><li>Booking everything on one project when you worked on two.</li></ul>",
+      "Active__c": true,
+      "Last_Reviewed__c": "2026-10-12"
+    },
+    {
+      "attributes": {
+        "type": "Tool_Guide__c",
+        "referenceId": "GuideExpenses"
+      },
+      "Name": "How to submit an expense claim in Atlântica Expenses",
+      "Tool__c": "Expenses",
+      "Summary__c": "Claim travel and work expenses with the right receipts.",
+      "Content__c": "<h2>What you can claim</h2><p>Travel to client sites, approved training, and work meals with clients. Personal commuting is not reimbursed.</p><h2>Step by step</h2><ol><li>Open <b>Expenses</b> from the intranet and click <b>New claim</b>.</li><li>Choose the category and the project to charge (or <b>INT</b> for internal costs).</li><li>Photograph the receipt and attach it. Claims without a receipt are rejected.</li><li>Submit within <b>30 days</b> of the expense. Your manager approves it and payment follows in the next payroll.</li></ol><h2>Tip</h2><p>You do not need a real expense during onboarding: open the form, check the categories and close it.</p>",
+      "Active__c": true,
+      "Last_Reviewed__c": "2026-10-12"
+    },
+    {
+      "attributes": {
+        "type": "Tool_Guide__c",
+        "referenceId": "GuideServiceDesk"
+      },
+      "Name": "How to raise a ticket with the Atlântica Service Desk",
+      "Tool__c": "IT Service Desk",
+      "Summary__c": "Get help with your laptop, accounts and access.",
+      "Content__c": "<h2>When to raise a ticket</h2><p>Any issue with equipment, accounts, software or access to client systems. Do not ask colleagues for their credentials.</p><h2>Step by step</h2><ol><li>Open the <b>Service Desk</b> portal from the intranet.</li><li>Choose <b>Hardware</b>, <b>Access request</b> or <b>Software</b>.</li><li>Describe the problem and what you have already tried. For access requests, name the system and your project.</li><li>Mark it <b>Urgent</b> only if you cannot work at all.</li></ol><h2>Response times</h2><p>Standard tickets: within one working day. Urgent tickets: within two hours.</p>",
+      "Active__c": true,
+      "Last_Reviewed__c": "2026-10-12"
+    }
+  ]
+}

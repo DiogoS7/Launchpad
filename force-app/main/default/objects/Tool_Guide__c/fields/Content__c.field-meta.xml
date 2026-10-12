@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content__c</fullName>
+    <description>Step-by-step instructions. Rich text so guides can include headings and lists. Also the grounding source for the v2 Agentforce agent.</description>
+    <inlineHelpText>The full guide.</inlineHelpText>
+    <label>Content</label>
+    <length>32768</length>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+    <trackHistory>false</trackHistory>
+</CustomField>

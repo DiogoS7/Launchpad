@@ -1,8 +1,16 @@
 [
   {
-    "sobject": "Onboarding_Task_Template__c",
+    "sobject": "Tool_Guide__c",
     "saveRefs": true,
     "resolveRefs": false,
+    "files": [
+      "Tool_Guide__c.json"
+    ]
+  },
+  {
+    "sobject": "Onboarding_Task_Template__c",
+    "saveRefs": true,
+    "resolveRefs": true,
     "files": [
       "Onboarding_Task_Template__c.json"
     ]

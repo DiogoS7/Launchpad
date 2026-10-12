@@ -110,7 +110,8 @@
       "Due_Offset_Days__c": 3,
       "Sort_Order__c": 50,
       "Description__c": "Follow the timesheet guide and submit your hours for your first week.",
-      "Active__c": true
+      "Active__c": true,
+      "Tool_Guide__c": "@GuideTimesheets"
     },
     {
       "attributes": {
@@ -124,7 +125,8 @@
       "Due_Offset_Days__c": 5,
       "Sort_Order__c": 51,
       "Description__c": "Follow the expenses guide. You do not need a real expense: read the guide and find the form.",
-      "Active__c": true
+      "Active__c": true,
+      "Tool_Guide__c": "@GuideExpenses"
     },
     {
       "attributes": {
@@ -138,7 +140,8 @@
       "Due_Offset_Days__c": 5,
       "Sort_Order__c": 52,
       "Description__c": "Follow the service desk guide so you know how to get help with equipment and access.",
-      "Active__c": true
+      "Active__c": true,
+      "Tool_Guide__c": "@GuideServiceDesk"
     },
     {
       "attributes": {

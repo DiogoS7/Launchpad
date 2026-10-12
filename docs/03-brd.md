@@ -3,7 +3,7 @@
 **Project:** Launchpad
 **Document:** 03 · Business Requirements Document (BRD)
 **Author:** Diogo Santos
-**Status:** Draft v0.1 · Scope: Release v1 (Core app)
+**Status:** v0.2 (updated after build) · Scope: Release v1 (Core app)
 **Depends on:** [01 · AS-IS](01-as-is-process.md) · [02 · TO-BE](02-to-be-process.md)
 
 ---
@@ -31,7 +31,7 @@ Launchpad is a Salesforce application that gives every new hire a single onboard
 - Mandatory buddy assignment
 - Automatic task generation from a shared set of templates
 - Project records and an automatic project handover checklist
-- Tool guides as Knowledge articles linked from tasks
+- Tool guides (custom Tool Guide object) linked from tasks
 - Reminders for incomplete preparation and overdue tasks
 - Reports and an HR dashboard
 - New hires can view their own plan and update their own tasks
@@ -49,7 +49,7 @@ Launchpad is a Salesforce application that gives every new hire a single onboard
 | ID | Type | Description |
 |---|---|---|
 | AS-01 | Assumption | All stakeholders work in Salesforce with their own user |
-| AS-02 | Assumption | Salesforce Knowledge can be enabled in the org (verify during build; fallback: custom Guide object) |
+| AS-02 | Decision | Tool guides are a custom object, not Salesforce Knowledge (see D3) |
 | CO-01 | Constraint | Built in a free Developer Edition org; user licences are limited, so demo users must be planned (check Setup → Company Information) |
 | CO-02 | Constraint | v1 is declarative only: objects, fields, Flows, validation rules, Lightning pages, reports |
 | CO-03 | Constraint | All configuration is retrieved into source control (GitHub) |
@@ -71,12 +71,12 @@ Launchpad is a Salesforce application that gives every new hire a single onboard
 ### Tasks and templates
 | ID | Requirement | Priority |
 |---|---|---|
-| FR-09 | HR can maintain a list of task templates, each with category, assignee role, due-day offset and optional guide link | Must |
+| FR-09 | HR can maintain a list of task templates, each with category, assignee role, due-day offset and optional tool guide | Must |
 | FR-10 | When a plan moves to In Progress, onboarding tasks are created from all active templates triggered at plan start | Must |
 | FR-11 | Each generated task is assigned to the right person (new hire, hiring manager, buddy, project lead or HR) based on the template | Must |
 | FR-12 | Each generated task gets a due date calculated from the plan start date plus the template offset | Must |
-| FR-13 | Tasks linked to a tool guide show a link to the related Knowledge article | Must |
-| FR-14 | Task owners receive a reminder when a task becomes overdue | Should |
+| FR-13 | Tasks linked to a tool guide show a link to the related Tool Guide record | Must |
+| FR-14 | Task owners receive a reminder the day after a task becomes overdue (see D4) | Should |
 | FR-15 | The plan shows its progress as the percentage of tasks completed | Must |
 
 ### Projects and handover
@@ -148,7 +148,7 @@ As a New Hire, I want to read and confirm my Role Brief, so that my manager know
 
 **US-07 · Learn internal tools**
 As a New Hire, I want each tool I need to learn to come with a guide, so that I don't have to ask colleagues how to report hours or expenses.
-- *Given* a tool task assigned to me, *when* I open it, *then* I see a link to the Knowledge article for that tool.
+- *Given* a tool task assigned to me, *when* I open it, *then* I see a link to the Tool Guide for that tool.
 
 **US-08 · Hand over a project**
 As a Project Lead, I want a standard handover checklist when a new hire joins my project, so that I cover everything without preparing it from scratch.
@@ -156,7 +156,7 @@ As a Project Lead, I want a standard handover checklist when a new hire joins my
 
 **US-09 · Be reminded of overdue tasks**
 As a task owner, I want a reminder when my onboarding task is overdue, so that the new hire isn't left waiting.
-- *Given* an open task past its due date, *then* its owner receives a reminder.
+- *Given* an open task past its due date, *then* its owner receives one reminder email the day after the due date.
 
 **US-10 · See my progress**
 As a New Hire, I want to see how much of my onboarding is done, so that I know where I stand.
@@ -181,6 +181,8 @@ erDiagram
     ONBOARDING_PLAN ||--|{ ONBOARDING_TASK : "master-detail"
     ONBOARDING_TASK_TEMPLATE ||--o{ ONBOARDING_TASK : "generated from"
     USER ||--o{ ONBOARDING_TASK : "assigned to"
+    TOOL_GUIDE ||--o{ ONBOARDING_TASK_TEMPLATE : "linked from"
+    TOOL_GUIDE ||--o{ ONBOARDING_TASK : "linked from"
 ```
 
 ### Onboarding Plan (`Onboarding_Plan__c`)
@@ -220,7 +222,8 @@ Custom object rather than the standard Task, so that it can be the detail side o
 | Due_Date__c | Date | |
 | Status__c | Picklist | Not Started, In Progress, Completed |
 | Completed_Date__c | Date | Set when completed |
-| Guide_Link__c | URL | Knowledge article link |
+| Tool_Guide__c | Lookup (Tool Guide) | Copied from the template |
+| Guide_Link__c | URL | Optional external link |
 | Description__c | Long Text Area | |
 | Is_Overdue__c | Formula (Checkbox) | Open and due date before today |
 
@@ -232,10 +235,21 @@ Custom object rather than the standard Task, so that it can be the detail side o
 | Assignee_Role__c | Picklist | New Hire, Hiring Manager, Buddy, Project Lead, HR |
 | Trigger__c | Picklist | Plan Start, Project Assigned |
 | Due_Offset_Days__c | Number | Days after start date |
-| Guide_Link__c | URL | Optional |
+| Tool_Guide__c | Lookup (Tool Guide) | Optional |
+| Guide_Link__c | URL | Optional external link |
 | Description__c | Long Text Area | |
 | Sort_Order__c | Number | |
 | Active__c | Checkbox | Only active templates generate tasks |
+
+### Tool Guide (`Tool_Guide__c`)
+| Field | Type | Notes |
+|---|---|---|
+| Name | Text | Guide title |
+| Tool__c | Picklist | Timesheets, Expenses, IT Service Desk, Other |
+| Summary__c | Text (255) | One-line summary |
+| Content__c | Rich Text Area | Step-by-step guide; grounding source for the v2 agent |
+| Last_Reviewed__c | Date | |
+| Active__c | Checkbox | |
 
 ### Project (`Project__c`)
 | Field | Type | Notes |
@@ -252,14 +266,17 @@ Custom object rather than the standard Task, so that it can be the detail side o
 | ID | Automation | Type | Implements |
 |---|---|---|---|
 | AU-01 | Create "prepare role" task for hiring manager on plan creation | Record-triggered Flow | FR-03 |
-| AU-02 | Remind manager if plan is in Draft 5 working days before start | Scheduled Flow | FR-06 |
+| AU-02 | Email the manager if the plan is still in Draft 7 calendar days (about 5 working days) before start | Record-triggered Flow, scheduled path | FR-06 |
 | AU-03 | Generate tasks from plan-start templates when status becomes In Progress | Record-triggered Flow | FR-10–FR-13 |
 | AU-04 | Generate handover tasks for project lead when project is assigned | Record-triggered Flow | FR-18 |
 | AU-05 | Stamp completed date when a task is completed | Record-triggered Flow | FR-15 |
-| AU-06 | Remind owners of overdue tasks | Scheduled Flow | FR-14 |
+| AU-06 | Email the assignee the day after an open task's due date | Record-triggered Flow, scheduled path | FR-14 |
+| SH-01 | Share the plan (Edit) with the new hire, manager, buddy and project lead | Record-triggered Flow creating share records | NFR-01 |
 | VR-01 | Ready requires Role Brief and buddy | Validation rule | FR-05 |
 | VR-02 | In Progress requires Ready and admin phase complete | Validation rule | FR-08 |
 | VR-03 | Completed requires no open tasks, independence date and assessment | Validation rule | FR-19, FR-20 |
+| VR-04 | Only users with the *Launchpad: Manage Plans* custom permission can change status, start date, role or department | Validation rule | NFR-01 |
+| VR-05 | Employees can only change the status of tasks assigned to them | Validation rule | FR-24 |
 
 ## 10. Security model
 
@@ -269,7 +286,7 @@ Custom object rather than the standard Task, so that it can be the detail side o
 | Hiring Manager / Project Lead | `Launchpad_Manager` | Create and edit plans and projects; read templates |
 | New Hire / Buddy | `Launchpad_Employee` | Read plans shared with them; edit tasks assigned to them |
 
-Onboarding plans use a **Private** organisation-wide default. Access for the new hire, hiring manager and buddy is granted through sharing on the plan (to be designed during build, using Flow-created share records or sharing rules). Tasks inherit access from their plan through the master-detail relationship.
+Onboarding plans use a **Private** organisation-wide default. Flow SH-01 gives the new hire, hiring manager, buddy and project lead Edit access with manual share records whenever one of them changes. Tasks inherit access from their plan through the master-detail relationship. Because field-level security cannot protect required fields, the custom permission *Launchpad: Manage Plans* (HR and Manager only) is checked by validation rules VR-04 and VR-05. Tool guides and templates are Public Read Only.
 
 ## 11. Requirements traceability
 
@@ -282,8 +299,14 @@ Onboarding plans use a **Private** organisation-wide default. Access for the new
 | PP-05 · No visibility after day one | FR-10, FR-14, FR-15, FR-25 |
 | PP-06 · No formal buddy | FR-05, FR-22 |
 
-## 12. Open items for build
+## 12. Design decisions made during build
 
-- **OI-01.** Confirm the number of available user licences in the Developer Edition org and plan demo users accordingly.
-- **OI-02.** Confirm Salesforce Knowledge can be enabled; otherwise switch tool guides to a custom object.
-- **OI-03.** Choose the sharing approach for new hires and buddies (Flow-created share records or sharing rules).
+| ID | Decision | Rationale | Trade-off |
+|---|---|---|---|
+| D1–D2 | One shared template set; new hires see their own plan | See TO-BE, section 11 | Role-specific templates deferred |
+| OI-01 → closed | Six demo users on Salesforce Platform licences, one per persona | The org has 6 unused Platform licences, which cover custom objects, Flows and reports | None for v1 |
+| D3 (closes OI-02) | Tool guides are a custom `Tool_Guide__c` object, not Salesforce Knowledge | Fully deployable from source control (NFR-05), no extra feature licences, simpler permissions | Loses Knowledge features such as article versioning and data categories; the v2 agent can still be grounded on the guide records |
+| D4 | One overdue reminder per task, the day after the due date, instead of daily | Avoids notification fatigue; the HR dashboard still shows every overdue task | Long-overdue tasks rely on the dashboard rather than repeated emails |
+| D5 (closes OI-03) | Plan sharing through Flow-created manual shares (SH-01) | Sharing rules cannot target users named in lookup fields, and v1 has no Apex (CO-02) | Manual shares are removed if the plan owner changes; re-saving a participant restores them |
+| D6 | AU-02 and AU-06 use scheduled paths instead of nightly scheduled Flows | Reminders are booked per record and cancelled automatically when the work is done | Timing is approximate (minutes) |
+| D7 | Project Lead is required on the page layout, not on the field | Lookups to User cannot be required at field level in Salesforce | Records created by import or automation could omit it; a validation rule can enforce it later |
