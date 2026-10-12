@@ -4,6 +4,10 @@
         <application>Launchpad</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Launchpad_Manage_Plans</name>
+    </customPermissions>
     <description>Launchpad: full access for HR Specialists who own the onboarding process.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Launchpad HR</label>

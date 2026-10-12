@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Assignee_Updates_Status</fullName>
+    <active>true</active>
+    <description>FR-24: employees can only change the status of tasks assigned to them. HR and managers can update any task.</description>
+    <errorConditionFormula>NOT($Permission.Launchpad_Manage_Plans) &amp;&amp; ISCHANGED(Status__c) &amp;&amp; Assigned_To__c &lt;&gt; $User.Id</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>You can only update the status of tasks assigned to you.</errorMessage>
+</ValidationRule>

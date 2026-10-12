@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Managers_Change_Plan_Details</fullName>
+    <active>true</active>
+    <description>NFR-01: only users with the Launchpad Manage Plans permission can change a plan's status or core details. Employees can still confirm their Role Brief.</description>
+    <errorConditionFormula>NOT($Permission.Launchpad_Manage_Plans) &amp;&amp; NOT(ISNEW()) &amp;&amp; (
+    ISCHANGED(Status__c) || ISCHANGED(Start_Date__c) || ISCHANGED(Role__c) || ISCHANGED(Department__c)
+)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>Only HR and managers can change the plan's status, start date, role or department.</errorMessage>
+</ValidationRule>

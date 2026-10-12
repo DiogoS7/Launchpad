@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows changing a plan&apos;s status and core details, and updating any task on a plan. Granted to HR and managers, not to employees.</description>
+    <isLicensed>false</isLicensed>
+    <label>Launchpad: Manage Plans</label>
+</CustomPermission>
