@@ -137,12 +137,12 @@ Measured against the assumed baseline in the AS-IS document.
 | v2 · Agentforce | An employee agent that answers onboarding and tool questions from the Knowledge articles and reports task status to the new hire | Agentblazer, Agentforce Specialist |
 | v3 · Claude | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Claude / Anthropic certifications |
 
-## 11. Assumptions and open questions
+## 11. Assumptions and decisions
 
 - **A1.** Every new hire and stakeholder has a Salesforce user. In the Developer Edition org, which has a limited number of user licences, the other roles are represented by sample records for demonstration.
 - **A2.** Salesforce Knowledge can be enabled in the Developer Edition org. To be verified during build; if it can't, tool guides fall back to a custom object.
-- **Q1.** Should task templates differ by role (consultant, developer, support) in v1, or start with one shared template?
-- **Q2.** Should the new hire be able to see their own plan in v1, or only managers and HR?
+- **D1.** v1 uses one shared set of task templates for all new hires. The plan records the role, so role-specific templates can be added in a later release without changing the data model.
+- **D2.** New hires can see their own onboarding plan and update their own tasks in v1.
 
 ## 12. Next step
 
