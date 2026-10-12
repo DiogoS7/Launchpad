@@ -2,12 +2,12 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
     <columns>NAME</columns>
-    <columns>New_Hire__c</columns>
+    <columns>Plan_Title__c</columns>
     <columns>Hiring_Manager__c</columns>
     <columns>Buddy__c</columns>
     <columns>Start_Date__c</columns>
     <columns>Status__c</columns>
-    <columns>Progress__c</columns>
+    <columns>Progress_Bar__c</columns>
     <filterScope>Everything</filterScope>
     <label>All Onboarding Plans</label>
 </ListView>

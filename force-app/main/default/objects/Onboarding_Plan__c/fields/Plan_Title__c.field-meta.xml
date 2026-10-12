@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Plan_Title__c</fullName>
+    <description>Readable plan name shown as the record title: new hire and role.</description>
+    <inlineHelpText>Who is being onboarded, and into which role.</inlineHelpText>
+    <label>Plan</label>
+    <formula>New_Hire__r.FirstName &amp; " " &amp; New_Hire__r.LastName &amp; " · " &amp; TEXT(Role__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+    <trackHistory>false</trackHistory>
+</CustomField>

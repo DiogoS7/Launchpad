@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Onboarding_Plan__c</entityName>
+    <fieldName>Status__c</fieldName>
+    <masterLabel>Onboarding Plan Lifecycle</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Buddy__c</fieldNames>
+        <fieldNames>Responsibilities__c</fieldNames>
+        <fieldNames>Goals_30_Days__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Hiring manager:&lt;/b&gt; write the Role Brief and assign a buddy. Both are required before the plan can be set to Ready.&lt;/p&gt;&lt;p&gt;&lt;b&gt;HR:&lt;/b&gt; handle the contract, equipment and access as usual.&lt;/p&gt;</info>
+        <picklistValueName>Draft</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Admin_Phase_Complete__c</fieldNames>
+        <fieldNames>Start_Date__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;HR:&lt;/b&gt; once the contract is signed and equipment and access are ready, use &lt;b&gt;Start Plan&lt;/b&gt;. Launchpad then creates the onboarding tasks and assigns them.&lt;/p&gt;</info>
+        <picklistValueName>Ready</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Project__c</fieldNames>
+        <fieldNames>Role_Brief_Confirmed__c</fieldNames>
+        <fieldNames>Progress_Bar__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;New hire:&lt;/b&gt; confirm your Role Brief and work through your tasks; each tool task links to a guide.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Manager:&lt;/b&gt; assign a project to send the handover checklist to the project lead.&lt;/p&gt;</info>
+        <picklistValueName>In Progress</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Independence_Date__c</fieldNames>
+        <fieldNames>Manager_Assessment__c</fieldNames>
+        <fieldNames>Days_To_Independence__c</fieldNames>
+        <info>&lt;p&gt;The new hire works independently. The independence date and your assessment feed the HR dashboard's time-to-independence metric.&lt;/p&gt;</info>
+        <picklistValueName>Completed</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Manager_Assessment__c</fieldNames>
+        <info>&lt;p&gt;The hire did not go ahead. Record the reason in the assessment so HR can follow up.&lt;/p&gt;</info>
+        <picklistValueName>Cancelled</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

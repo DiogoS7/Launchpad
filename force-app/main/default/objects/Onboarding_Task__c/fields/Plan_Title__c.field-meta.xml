@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Plan_Title__c</fullName>
+    <description>Readable name of the plan this task belongs to.</description>
+    <inlineHelpText>The new hire this task is for.</inlineHelpText>
+    <label>Plan</label>
+    <formula>Onboarding_Plan__r.Plan_Title__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+    <trackHistory>false</trackHistory>
+</CustomField>

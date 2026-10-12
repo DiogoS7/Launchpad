@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customValue>
-        <fullName>Role</fullName>
-        <default>false</default>
-        <label>Role</label>
-    </customValue>
-    <customValue>
-        <fullName>Tools</fullName>
-        <default>false</default>
-        <label>Tools</label>
-    </customValue>
-    <customValue>
-        <fullName>Buddy</fullName>
-        <default>false</default>
-        <label>Buddy</label>
-    </customValue>
-    <customValue>
-        <fullName>Project Handover</fullName>
-        <default>false</default>
-        <label>Project Handover</label>
-    </customValue>
-    <customValue>
-        <fullName>Admin</fullName>
-        <default>false</default>
-        <label>Admin</label>
-    </customValue>
+    <customValue><fullName>Role</fullName><default>false</default><label>Role</label></customValue>
+    <customValue><fullName>Tools</fullName><default>false</default><label>Tools</label></customValue>
+    <customValue><fullName>Buddy</fullName><default>false</default><label>Buddy</label></customValue>
+    <customValue><fullName>Project Handover</fullName><default>false</default><label>Project Handover</label></customValue>
+    <customValue><fullName>Admin</fullName><default>false</default><label>Admin</label></customValue>
     <description>Categories shared by onboarding task templates and onboarding tasks.</description>
     <masterLabel>Onboarding Task Category</masterLabel>
     <sorted>false</sorted>

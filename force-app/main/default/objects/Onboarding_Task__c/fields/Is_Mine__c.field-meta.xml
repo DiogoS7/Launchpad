@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Mine__c</fullName>
+    <description>True when the task is assigned to the user viewing it. Powers the My Tasks list view.</description>
+    <inlineHelpText>Ticked when this task is yours.</inlineHelpText>
+    <label>Assigned to Me</label>
+    <formula>Assigned_To__c = $User.Id</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <type>Checkbox</type>
+    <trackHistory>false</trackHistory>
+</CustomField>

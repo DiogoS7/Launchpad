@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Progress_Bar__c</fullName>
+    <description>Text progress bar for list views and the record header.</description>
+    <inlineHelpText>How much of the onboarding is done.</inlineHelpText>
+    <label>Progress Bar</label>
+    <formula>CASE(ROUND(Progress__c * 10, 0), 0, "□□□□□□□□□□", 1, "■□□□□□□□□□", 2, "■■□□□□□□□□", 3, "■■■□□□□□□□", 4, "■■■■□□□□□□", 5, "■■■■■□□□□□", 6, "■■■■■■□□□□", 7, "■■■■■■■□□□", 8, "■■■■■■■■□□", 9, "■■■■■■■■■□", 10, "■■■■■■■■■■", "□□□□□□□□□□") &amp; " " &amp; TEXT(ROUND(Progress__c * 100, 0)) &amp; "%"</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+    <trackHistory>false</trackHistory>
+</CustomField>

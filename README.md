@@ -1,4 +1,4 @@
-﻿# Launchpad
+# Launchpad
 
 **Employee onboarding on Salesforce, from role preparation to independence.**
 
@@ -63,7 +63,7 @@ Everything is declarative and stored in this repository as Salesforce metadata, 
 | **Data quality** | 7 validation rules enforcing the plan lifecycle (Draft → Ready → In Progress → Completed) |
 | **Security** | Private sharing on plans, Flow-created share records for each participant, 3 permission sets (HR, Manager, Employee), and a **custom permission** checked in validation rules to protect required fields |
 | **Reporting** | 2 custom report types, 4 reports, and a dynamic dashboard that respects each viewer's access |
-| **User experience** | Lightning app with tabs for each object, page layouts with help text on every field |
+| **User experience** | Lightning app with a custom home page (My Tasks, Active Plans, Tool Guides), a **Path** with stage-by-stage guidance on every plan, one-click quick actions (Start Plan, Confirm Role Brief, Mark Complete), readable record titles and progress bars, list views per object, and help text on every field |
 
 ![Task generation Flow](docs/screenshots/06-flow-builder.png)
 

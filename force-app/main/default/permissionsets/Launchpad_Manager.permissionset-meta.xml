@@ -11,6 +11,10 @@
     <description>Launchpad: hiring managers and project leads. Create and manage onboarding plans and projects; read templates.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Launchpad Manager</label>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.Plan_Title__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.Progress_Bar__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Task__c.Plan_Title__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Task__c.Is_Mine__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Onboarding_Plan__c.New_Hire__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Onboarding_Plan__c.Hiring_Manager__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Onboarding_Plan__c.Buddy__c</field><readable>true</readable></fieldPermissions>

@@ -7,6 +7,10 @@
     <description>Launchpad: new hires and buddies. See plans shared with them, confirm the Role Brief and update their own tasks.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Launchpad Employee</label>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.Plan_Title__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.Progress_Bar__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Task__c.Plan_Title__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Onboarding_Task__c.Is_Mine__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.New_Hire__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.Hiring_Manager__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Onboarding_Plan__c.Buddy__c</field><readable>true</readable></fieldPermissions>
