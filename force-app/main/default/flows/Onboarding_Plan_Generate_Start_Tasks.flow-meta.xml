@@ -59,24 +59,24 @@
         <connector><targetReference>Loop_Templates</targetReference></connector>
     </assignments>
     <decisions>
-        <name>Check_No_Existing_Tasks</name>
-        <label>Check No Existing Tasks</label>
+        <name>Check_Start_Tasks_Not_Generated</name>
+        <label>Check Start Tasks Not Generated</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnectorLabel>Tasks already exist</defaultConnectorLabel>
+        <defaultConnectorLabel>Already generated</defaultConnectorLabel>
         <rules>
-            <name>No_Tasks_Yet</name>
+            <name>Not_Generated_Yet</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Total_Tasks__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue><numberValue>0.0</numberValue></rightValue>
+                <leftValueReference>Get_Existing_Start_Task</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue><booleanValue>true</booleanValue></rightValue>
             </conditions>
-            <connector><targetReference>Get_Plan_Start_Templates</targetReference></connector>
-            <label>No Tasks Yet</label>
+            <connector><targetReference>Get_Templates</targetReference></connector>
+            <label>Not Generated Yet</label>
         </rules>
     </decisions>
-    <description>AU-03 (FR-10 to FR-13): when a plan moves to In Progress, creates one onboarding task per active Plan Start template, assigned by the template's assignee role and due on the start date plus the template offset. Skips plans that already have tasks, so a restarted plan is not duplicated.</description>
+    <description>AU-03 (FR-10 to FR-13): when a plan moves to In Progress, creates one onboarding task per active Plan Start template, assigned by the template&apos;s assignee role and due on the start date plus the template offset. Skips plans whose start tasks were already generated, so a restarted plan is not duplicated.</description>
     <environments>Default</environments>
     <formulas>
         <name>fmlAssigneeId</name>
@@ -101,7 +101,7 @@
         <label>Loop Templates</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <collectionReference>Get_Plan_Start_Templates</collectionReference>
+        <collectionReference>Get_Templates</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector><targetReference>Build_Task</targetReference></nextValueConnector>
         <noMoreValuesConnector><targetReference>Create_Tasks</targetReference></noMoreValuesConnector>
@@ -127,8 +127,35 @@
         <inputReference>colTasks</inputReference>
     </recordCreates>
     <recordLookups>
-        <name>Get_Plan_Start_Templates</name>
-        <label>Get Plan Start Templates</label>
+        <name>Get_Existing_Start_Task</name>
+        <label>Get Existing Start Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector><targetReference>Check_Start_Tasks_Not_Generated</targetReference></connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Onboarding_Plan__c</field>
+            <operator>EqualTo</operator>
+            <value><elementReference>$Record.Id</elementReference></value>
+        </filters>
+        <filters>
+            <field>Template__c</field>
+            <operator>IsNull</operator>
+            <value><booleanValue>false</booleanValue></value>
+        </filters>
+        <filters>
+            <field>Category__c</field>
+            <operator>NotEqualTo</operator>
+            <value><stringValue>Project Handover</stringValue></value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Onboarding_Task__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Templates</name>
+        <label>Get Templates</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
@@ -153,7 +180,7 @@
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector><targetReference>Check_No_Existing_Tasks</targetReference></connector>
+        <connector><targetReference>Get_Existing_Start_Task</targetReference></connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
