@@ -1,0 +1,10 @@
+[
+  {
+    "sobject": "Onboarding_Task_Template__c",
+    "saveRefs": true,
+    "resolveRefs": false,
+    "files": [
+      "Onboarding_Task_Template__c.json"
+    ]
+  }
+]

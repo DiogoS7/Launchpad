@@ -1,0 +1,228 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template1"
+      },
+      "Name": "Read and confirm your Role Brief",
+      "Category__c": "Role",
+      "Assignee_Role__c": "New Hire",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 1,
+      "Sort_Order__c": 10,
+      "Description__c": "Open your onboarding plan, read the Role Brief written by your manager and tick Role Brief Confirmed. Note any questions for your first manager conversation.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template2"
+      },
+      "Name": "Welcome conversation with your new hire",
+      "Category__c": "Role",
+      "Assignee_Role__c": "Hiring Manager",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 0,
+      "Sort_Order__c": 20,
+      "Description__c": "Walk the new hire through the Role Brief: responsibilities, 30-day goals and key stakeholders. Agree how often you will meet during the first month.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template3"
+      },
+      "Name": "Introduce yourself to your new hire",
+      "Category__c": "Buddy",
+      "Assignee_Role__c": "Buddy",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 0,
+      "Sort_Order__c": 30,
+      "Description__c": "Say hello on day one, share how you can help, and agree a time for your weekly check-ins.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template4"
+      },
+      "Name": "Buddy check-in: week 1",
+      "Category__c": "Buddy",
+      "Assignee_Role__c": "Buddy",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 5,
+      "Sort_Order__c": 40,
+      "Description__c": "Short check-in: what went well, what is unclear, anything blocking.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template5"
+      },
+      "Name": "Buddy check-in: week 2",
+      "Category__c": "Buddy",
+      "Assignee_Role__c": "Buddy",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 10,
+      "Sort_Order__c": 41,
+      "Description__c": "Short check-in: what went well, what is unclear, anything blocking.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template6"
+      },
+      "Name": "Buddy check-in: week 3",
+      "Category__c": "Buddy",
+      "Assignee_Role__c": "Buddy",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 15,
+      "Sort_Order__c": 42,
+      "Description__c": "Short check-in: what went well, what is unclear, anything blocking.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template7"
+      },
+      "Name": "Buddy check-in: week 4",
+      "Category__c": "Buddy",
+      "Assignee_Role__c": "Buddy",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 20,
+      "Sort_Order__c": 43,
+      "Description__c": "Last formal check-in. Ask what would have made onboarding easier and share it with HR.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template8"
+      },
+      "Name": "Learn how to report your hours",
+      "Category__c": "Tools",
+      "Assignee_Role__c": "New Hire",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 3,
+      "Sort_Order__c": 50,
+      "Description__c": "Follow the timesheet guide and submit your hours for your first week.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template9"
+      },
+      "Name": "Learn how to submit an expense claim",
+      "Category__c": "Tools",
+      "Assignee_Role__c": "New Hire",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 5,
+      "Sort_Order__c": 51,
+      "Description__c": "Follow the expenses guide. You do not need a real expense: read the guide and find the form.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template10"
+      },
+      "Name": "Learn how to raise an IT support ticket",
+      "Category__c": "Tools",
+      "Assignee_Role__c": "New Hire",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 5,
+      "Sort_Order__c": 52,
+      "Description__c": "Follow the service desk guide so you know how to get help with equipment and access.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template11"
+      },
+      "Name": "HR check-in after week one",
+      "Category__c": "Admin",
+      "Assignee_Role__c": "HR",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 7,
+      "Sort_Order__c": 60,
+      "Description__c": "Ask the new hire how the first week went and check that contract, equipment and access issues are all resolved.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template12"
+      },
+      "Name": "Review 30-day goals with your new hire",
+      "Category__c": "Role",
+      "Assignee_Role__c": "Hiring Manager",
+      "Trigger__c": "Plan Start",
+      "Due_Offset_Days__c": 28,
+      "Sort_Order__c": 70,
+      "Description__c": "Review progress against the 30-day goals in the Role Brief. If the new hire works independently, record the independence date and assessment on the plan.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template13"
+      },
+      "Name": "Share the project overview",
+      "Category__c": "Project Handover",
+      "Assignee_Role__c": "Project Lead",
+      "Trigger__c": "Project Assigned",
+      "Due_Offset_Days__c": 1,
+      "Sort_Order__c": 80,
+      "Description__c": "Explain what the project delivers, for which client, its current phase and how the team works.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template14"
+      },
+      "Name": "Introduce the key project contacts",
+      "Category__c": "Project Handover",
+      "Assignee_Role__c": "Project Lead",
+      "Trigger__c": "Project Assigned",
+      "Due_Offset_Days__c": 2,
+      "Sort_Order__c": 81,
+      "Description__c": "Introduce the new hire to the team members and client contacts they will work with.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template15"
+      },
+      "Name": "Share project documentation and access",
+      "Category__c": "Project Handover",
+      "Assignee_Role__c": "Project Lead",
+      "Trigger__c": "Project Assigned",
+      "Due_Offset_Days__c": 1,
+      "Sort_Order__c": 82,
+      "Description__c": "Point the new hire to the documentation link on the project record and confirm they have access to the project tools.",
+      "Active__c": true
+    },
+    {
+      "attributes": {
+        "type": "Onboarding_Task_Template__c",
+        "referenceId": "Template16"
+      },
+      "Name": "Assign a first task on the project",
+      "Category__c": "Project Handover",
+      "Assignee_Role__c": "Project Lead",
+      "Trigger__c": "Project Assigned",
+      "Due_Offset_Days__c": 3,
+      "Sort_Order__c": 83,
+      "Description__c": "Give the new hire a small, well-defined first task and agree when to review it together.",
+      "Active__c": true
+    }
+  ]
+}
