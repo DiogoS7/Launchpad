@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger__c</fullName>
+    <description>The plan event that generates a task from this template.</description>
+    <inlineHelpText>Plan Start: created when the plan moves to In Progress. Project Assigned: created when a project is assigned to the plan.</inlineHelpText>
+    <label>Trigger</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Plan Start</fullName><default>true</default><label>Plan Start</label></value>
+            <value><fullName>Project Assigned</fullName><default>false</default><label>Project Assigned</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

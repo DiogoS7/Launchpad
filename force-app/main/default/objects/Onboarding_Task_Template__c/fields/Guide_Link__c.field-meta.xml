@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Guide_Link__c</fullName>
+    <description>Optional link to the Knowledge article that explains how to complete the task. Copied to generated tasks.</description>
+    <inlineHelpText>Link to the guide that explains this task, for example how to report hours.</inlineHelpText>
+    <label>Guide Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Url</type>
+</CustomField>

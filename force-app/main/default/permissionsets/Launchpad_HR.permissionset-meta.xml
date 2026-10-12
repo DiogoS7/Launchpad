@@ -8,6 +8,19 @@
     <fieldPermissions><editable>true</editable><field>Project__c.Documentation_Link__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Project__c.Active__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Project__c.Project_Lead__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Onboarding_Task_Template__c.Guide_Link__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Onboarding_Task_Template__c.Description__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Onboarding_Task_Template__c.Sort_Order__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Onboarding_Task_Template__c.Active__c</field><readable>true</readable></fieldPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Onboarding_Task_Template__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -17,5 +30,6 @@
         <object>Project__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <tabSettings><tab>Onboarding_Task_Template__c</tab><visibility>Visible</visibility></tabSettings>
     <tabSettings><tab>Project__c</tab><visibility>Visible</visibility></tabSettings>
 </PermissionSet>
