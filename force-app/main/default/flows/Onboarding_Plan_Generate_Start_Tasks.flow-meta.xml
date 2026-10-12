@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Build_Task</name>
+        <label>Build Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varTask.Name</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Loop_Templates.Name</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Onboarding_Plan__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>$Record.Id</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Template__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Loop_Templates.Id</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Category__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Loop_Templates.Category__c</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Assigned_To__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>fmlAssigneeId</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Due_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>fmlDueDate</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value><stringValue>Not Started</stringValue></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Guide_Link__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Loop_Templates.Guide_Link__c</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTask.Description__c</assignToReference>
+            <operator>Assign</operator>
+            <value><elementReference>Loop_Templates.Description__c</elementReference></value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colTasks</assignToReference>
+            <operator>Add</operator>
+            <value><elementReference>varTask</elementReference></value>
+        </assignmentItems>
+        <connector><targetReference>Loop_Templates</targetReference></connector>
+    </assignments>
+    <decisions>
+        <name>Check_No_Existing_Tasks</name>
+        <label>Check No Existing Tasks</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Tasks already exist</defaultConnectorLabel>
+        <rules>
+            <name>No_Tasks_Yet</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Total_Tasks__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue><numberValue>0.0</numberValue></rightValue>
+            </conditions>
+            <connector><targetReference>Get_Plan_Start_Templates</targetReference></connector>
+            <label>No Tasks Yet</label>
+        </rules>
+    </decisions>
+    <description>AU-03 (FR-10 to FR-13): when a plan moves to In Progress, creates one onboarding task per active Plan Start template, assigned by the template's assignee role and due on the start date plus the template offset. Skips plans that already have tasks, so a restarted plan is not duplicated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fmlAssigneeId</name>
+        <dataType>String</dataType>
+        <expression>CASE(TEXT({!Loop_Templates.Assignee_Role__c}),
+  &quot;New Hire&quot;, {!$Record.New_Hire__c},
+  &quot;Hiring Manager&quot;, {!$Record.Hiring_Manager__c},
+  &quot;Buddy&quot;, {!$Record.Buddy__c},
+  &quot;Project Lead&quot;, {!$Record.Project__r.Project_Lead__c},
+  &quot;HR&quot;, {!$Record.OwnerId},
+  {!$Record.OwnerId})</expression>
+    </formulas>
+    <formulas>
+        <name>fmlDueDate</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Start_Date__c} + BLANKVALUE({!Loop_Templates.Due_Offset_Days__c}, 0)</expression>
+    </formulas>
+    <interviewLabel>Onboarding Plan: Generate Start Tasks {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Onboarding Plan: Generate Start Tasks</label>
+    <loops>
+        <name>Loop_Templates</name>
+        <label>Loop Templates</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Plan_Start_Templates</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector><targetReference>Build_Task</targetReference></nextValueConnector>
+        <noMoreValuesConnector><targetReference>Create_Tasks</targetReference></noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Tasks</name>
+        <label>Create Tasks</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>colTasks</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Plan_Start_Templates</name>
+        <label>Get Plan Start Templates</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector><targetReference>Loop_Templates</targetReference></connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Active__c</field>
+            <operator>EqualTo</operator>
+            <value><booleanValue>true</booleanValue></value>
+        </filters>
+        <filters>
+            <field>Trigger__c</field>
+            <operator>EqualTo</operator>
+            <value><stringValue>Plan Start</stringValue></value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Onboarding_Task_Template__c</object>
+        <sortField>Sort_Order__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector><targetReference>Check_No_Existing_Tasks</targetReference></connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value><stringValue>In Progress</stringValue></value>
+        </filters>
+        <object>Onboarding_Plan__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>colTasks</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Onboarding_Task__c</objectType>
+    </variables>
+    <variables>
+        <name>varTask</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Onboarding_Task__c</objectType>
+    </variables>
+</Flow>
