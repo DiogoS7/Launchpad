@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Launchpad: full access for HR Specialists who own the onboarding process.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Launchpad HR</label>
+    <fieldPermissions><editable>true</editable><field>Project__c.Client__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Project__c.Description__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Project__c.Documentation_Link__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Project__c.Active__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Project__c.Project_Lead__c</field><readable>true</readable></fieldPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Project__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <tabSettings><tab>Project__c</tab><visibility>Visible</visibility></tabSettings>
+</PermissionSet>

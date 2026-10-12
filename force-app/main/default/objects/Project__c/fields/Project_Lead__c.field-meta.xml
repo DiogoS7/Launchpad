@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Lead__c</fullName>
+    <description>User responsible for the project. Receives the project handover tasks when a new hire joins.</description>
+    <inlineHelpText>The person responsible for handing over the project to new hires.</inlineHelpText>
+    <label>Project Lead</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Projects_Led</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>
+
