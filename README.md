@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/assets/launchpad-logo.png" alt="Launchpad logo" width="120"></p>
+
 # Launchpad
 
 **Employee onboarding on Salesforce, from role preparation to independence.**
