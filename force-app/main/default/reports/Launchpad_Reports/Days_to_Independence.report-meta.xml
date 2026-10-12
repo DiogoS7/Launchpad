@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Onboarding_Plan__c$Name</field>
+    </columns>
+    <columns>
+        <field>Onboarding_Plan__c$New_Hire__c</field>
+    </columns>
+    <columns>
+        <field>Onboarding_Plan__c$Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Onboarding_Plan__c$Independence_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Onboarding_Plan__c$Days_To_Independence__c</field>
+    </columns>
+    <description>BO-01 / FR-21: average days from start date to independence for completed plans, by department.</description>
+    <filter>
+        <criteriaItems>
+            <column>Onboarding_Plan__c$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Completed</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Onboarding_Plan__c$Department__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Days to Independence</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Launchpad_Plans__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Onboarding_Plan__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
