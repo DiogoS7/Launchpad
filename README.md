@@ -1,6 +1,6 @@
-![Launchpad: employee onboarding on Salesforce, from role preparation to independence](docs/assets/launchpad-social-preview.png)
+[![CI](https://github.com/DiogoS7/Launchpad/actions/workflows/ci.yml/badge.svg)](https://github.com/DiogoS7/Launchpad/actions/workflows/ci.yml)
 
-<p align="center"><a href="https://github.com/DiogoS7/Launchpad/actions/workflows/ci.yml"><img src="https://github.com/DiogoS7/Launchpad/actions/workflows/ci.yml/badge.svg" alt="CI"></a></p>
+![Launchpad: employee onboarding on Salesforce, from role preparation to independence](docs/assets/launchpad-social-preview.png)
 
 Launchpad is a Salesforce application for a fictional Lisbon IT consultancy, Atlântica Consulting. It started as a business analysis exercise: map how onboarding works today, find where it breaks, redesign the process, and then build the redesign on the Salesforce Platform with declarative tools only (no Apex).
 
