@@ -5,7 +5,6 @@ import { NavigationMixin } from 'lightning/navigation';
 
 import STATUS from '@salesforce/schema/Onboarding_Plan__c.Status__c';
 import START_DATE from '@salesforce/schema/Onboarding_Plan__c.Start_Date__c';
-import PROGRESS from '@salesforce/schema/Onboarding_Plan__c.Progress__c';
 import TOTAL from '@salesforce/schema/Onboarding_Plan__c.Total_Tasks__c';
 import COMPLETED from '@salesforce/schema/Onboarding_Plan__c.Completed_Tasks__c';
 import DAYS_TO_INDEPENDENCE from '@salesforce/schema/Onboarding_Plan__c.Days_To_Independence__c';
@@ -16,7 +15,7 @@ import USER_NAME from '@salesforce/schema/User.Name';
 import USER_TITLE from '@salesforce/schema/User.Title';
 import USER_PHOTO from '@salesforce/schema/User.SmallPhotoUrl';
 
-const PLAN_FIELDS = [STATUS, START_DATE, PROGRESS, TOTAL, COMPLETED, DAYS_TO_INDEPENDENCE, BUDDY, MANAGER];
+const PLAN_FIELDS = [STATUS, START_DATE, TOTAL, COMPLETED, DAYS_TO_INDEPENDENCE, BUDDY, MANAGER];
 const USER_FIELDS = [USER_NAME, USER_TITLE, USER_PHOTO];
 const STAGES = ['Draft', 'Ready', 'In Progress', 'Completed'];
 const STAGE_LABELS = { Draft: 'Prep', Ready: 'Ready', 'In Progress': 'In orbit', Completed: 'Landed' };
@@ -119,7 +118,11 @@ export default class MissionControl extends NavigationMixin(LightningElement) {
         return this.plan ? getFieldValue(this.plan, MANAGER) : undefined;
     }
     get progressPct() {
-        return Math.round((getFieldValue(this.plan, PROGRESS) || 0) * 100);
+        // Computed from the roll-ups: a Percent field already arrives as 31 (not 0.31),
+        // so deriving it avoids any unit confusion.
+        const total = getFieldValue(this.plan, TOTAL) || 0;
+        const done = getFieldValue(this.plan, COMPLETED) || 0;
+        return total ? Math.round((done / total) * 100) : 0;
     }
     get taskSummary() {
         const total = getFieldValue(this.plan, TOTAL) || 0;
@@ -167,7 +170,7 @@ export default class MissionControl extends NavigationMixin(LightningElement) {
             let state = 'todo';
             if (current > i || this.status === 'Completed') state = 'done';
             if (current === i && this.status !== 'Completed') state = 'current';
-            return { key: s, label: STAGE_LABELS[s], cls: `stage stage_${state}` };
+            return { key: s, label: STAGE_LABELS[s], cls: `stage stage_${state}`, dotCls: `stage-dot stage-dot_${state}` };
         });
     }
 

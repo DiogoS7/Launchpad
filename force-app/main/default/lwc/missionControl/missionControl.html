@@ -16,14 +16,15 @@
                 <div class="mc-countdown-small">{countdown.small}</div>
             </section>
 
-            <ol class="mc-stages">
+            <div class="mc-stages">
+                <div class="mc-stages-line"></div>
                 <template for:each={stages} for:item="stage">
-                    <li key={stage.key} class={stage.cls}>
-                        <span class="stage-dot"></span>
+                    <div key={stage.key} class={stage.cls}>
+                        <span class={stage.dotCls}></span>
                         <span class="stage-label">{stage.label}</span>
-                    </li>
+                    </div>
                 </template>
-            </ol>
+            </div>
 
             <section class="mc-gauge-row">
                 <div class="mc-gauge" aria-label="Onboarding progress">
