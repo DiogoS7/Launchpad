@@ -13,14 +13,14 @@
 .mc-countdown-big { font-size: 2.25rem; font-weight: 800; line-height: 1.1; }
 .mc-countdown-small { font-size: 0.8125rem; color: #c9d8f5; text-transform: uppercase; letter-spacing: 0.08em; }
 
-.mc-stages { position: relative; width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); margin: 0.25rem 0 1rem; }
-.mc-stages-line { position: absolute; top: 0.4rem; left: 12.5%; right: 12.5%; height: 2px; background: rgba(201, 216, 245, 0.35); }
-.mc-stage { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.mc-stage-dot { display: block; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: #0e2452; border: 2px solid rgba(201, 216, 245, 0.5); position: relative; z-index: 1; }
-.mc-stage-dot_done { background: #7fa6e8; border-color: #7fa6e8; }
-.mc-stage-dot_current { background: #ffb547; border-color: #ffb547; box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.25); }
-.mc-stage-label { display: block; margin-top: 0.3rem; font-size: 0.6875rem; color: #c9d8f5; white-space: nowrap; }
-.mc-stage_current .mc-stage-label { color: #ffffff; font-weight: 700; }
+.mc-steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); min-height: 2.25rem; margin: 0.25rem 0 1rem; }
+.mc-steps-line { position: absolute; top: 0.4rem; left: 12.5%; right: 12.5%; height: 2px; background: rgba(201, 216, 245, 0.35); }
+.mc-step { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.mc-step-dot { display: block; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: #0e2452; border: 2px solid rgba(201, 216, 245, 0.5); position: relative; z-index: 1; }
+.mc-step-dot_done { background: #7fa6e8; border-color: #7fa6e8; }
+.mc-step-dot_current { background: #ffb547; border-color: #ffb547; box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.25); }
+.mc-step-label { display: block; margin-top: 0.3rem; font-size: 0.6875rem; color: #c9d8f5; white-space: nowrap; }
+.mc-step_current .mc-step-label { color: #ffffff; font-weight: 700; }
 
 .mc-gauge-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
 .mc-gauge { position: relative; width: 3.5rem; height: 9rem; flex-shrink: 0; }

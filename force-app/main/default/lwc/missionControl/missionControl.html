@@ -16,12 +16,12 @@
                 <div class="mc-countdown-small">{countdown.small}</div>
             </section>
 
-            <div class="mc-stages">
-                <div class="mc-stages-line"></div>
+            <div class="mc-steps">
+                <div class="mc-steps-line"></div>
                 <template for:each={stages} for:item="stage">
                     <div key={stage.key} class={stage.cls}>
                         <span class={stage.dotCls}></span>
-                        <span class="mc-stage-label">{stage.label}</span>
+                        <span class="mc-step-label">{stage.label}</span>
                     </div>
                 </template>
             </div>

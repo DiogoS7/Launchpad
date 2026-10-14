@@ -170,7 +170,7 @@ export default class MissionControl extends NavigationMixin(LightningElement) {
             let state = 'todo';
             if (current > i || this.status === 'Completed') state = 'done';
             if (current === i && this.status !== 'Completed') state = 'current';
-            return { key: s, label: STAGE_LABELS[s], cls: `mc-stage mc-stage_${state}`, dotCls: `mc-stage-dot mc-stage-dot_${state}` };
+            return { key: s, label: STAGE_LABELS[s], cls: `mc-step mc-step_${state}`, dotCls: `mc-step-dot mc-step-dot_${state}` };
         });
     }
 
