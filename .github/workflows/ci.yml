@@ -11,8 +11,8 @@ jobs:
     name: Metadata checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Check metadata, field documentation, seed data and README images
@@ -27,21 +27,27 @@ jobs:
     env:
       SFDX_AUTH_URL: ${{ secrets.SFDX_AUTH_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Skip if the org secret is not configured
         if: env.SFDX_AUTH_URL == ''
         run: echo "::notice::SFDX_AUTH_URL secret not set, skipping the Salesforce validation."
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: env.SFDX_AUTH_URL != ''
         with:
-          node-version: "20"
+          node-version: "22"
       - name: Install Salesforce CLI
         if: env.SFDX_AUTH_URL != ''
         run: npm install --global @salesforce/cli
       - name: Authenticate to the org
         if: env.SFDX_AUTH_URL != ''
         run: |
-          echo "$SFDX_AUTH_URL" > ./authurl.txt
+          # Strip spaces and line breaks that sneak in when the secret is pasted.
+          printf '%s' "$SFDX_AUTH_URL" | tr -d '[:space:]' > ./authurl.txt
+          if ! grep -q '^force://' ./authurl.txt; then
+            echo "::error::SFDX_AUTH_URL must start with force:// (copy only the value of 'Sfdx Auth Url' from: sf org display --verbose)"
+            rm ./authurl.txt
+            exit 1
+          fi
           sf org login sfdx-url --sfdx-url-file ./authurl.txt --alias ci-org --set-default
           rm ./authurl.txt
       - name: Check-only deploy (nothing is changed in the org)
