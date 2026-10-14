@@ -1,0 +1,56 @@
+.mc {
+    background: linear-gradient(180deg, #0e2452 0%, #0b3d91 100%);
+    color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 1rem 1rem 1.25rem;
+    box-shadow: 0 4px 14px rgba(11, 61, 145, 0.25);
+}
+.mc-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+.mc-logo { width: 1.5rem; height: 1.5rem; }
+.mc-title { font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; }
+
+.mc-countdown { text-align: center; padding: 0.5rem 0 0.75rem; }
+.mc-countdown-big { font-size: 2.25rem; font-weight: 800; line-height: 1.1; }
+.mc-countdown-small { font-size: 0.8125rem; color: #c9d8f5; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.mc-stages { display: flex; justify-content: space-between; position: relative; margin: 0.25rem 0 1rem; padding: 0; list-style: none; }
+.mc-stages::before { content: ''; position: absolute; top: 0.4rem; left: 8%; right: 8%; height: 2px; background: rgba(201, 216, 245, 0.35); }
+.stage { position: relative; display: flex; flex-direction: column; align-items: center; flex: 1; }
+.stage-dot { width: 0.8rem; height: 0.8rem; border-radius: 50%; background: #0e2452; border: 2px solid rgba(201, 216, 245, 0.5); z-index: 1; }
+.stage-label { margin-top: 0.3rem; font-size: 0.6875rem; color: #c9d8f5; }
+.stage_done .stage-dot { background: #7fa6e8; border-color: #7fa6e8; }
+.stage_current .stage-dot { background: #ffb547; border-color: #ffb547; box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.25); }
+.stage_current .stage-label { color: #ffffff; font-weight: 700; }
+
+.mc-gauge-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.mc-gauge { position: relative; width: 3.5rem; height: 9rem; flex-shrink: 0; }
+.mc-track { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 0.5rem; height: 100%; border-radius: 0.25rem; background: rgba(201, 216, 245, 0.2); overflow: hidden; }
+.mc-fill { position: absolute; bottom: 0; width: 100%; background: linear-gradient(0deg, #ffb547, #e5484d); border-radius: 0.25rem; transition: height 0.6s ease; }
+.mc-rocket { position: absolute; left: 50%; transform: translateX(-50%); width: 2rem; transition: bottom 0.6s ease; }
+.mc-pct { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+.mc-pct span { font-size: 1.25rem; font-weight: 600; color: #c9d8f5; }
+.mc-sub { font-size: 0.8125rem; color: #c9d8f5; margin-top: 0.25rem; }
+
+.mc-block { background: rgba(255, 255, 255, 0.08); border-radius: 0.5rem; padding: 0.75rem; margin-top: 0.75rem; }
+.mc-block-title { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: #7fa6e8; margin-bottom: 0.5rem; font-weight: 700; }
+.mc-empty { font-size: 0.8125rem; color: #c9d8f5; }
+
+.mc-next, .mc-crew { display: flex; width: 100%; text-align: left; background: none; border: 0; color: inherit; cursor: pointer; padding: 0.25rem; border-radius: 0.375rem; }
+.mc-next { flex-direction: column; }
+.mc-next:hover, .mc-crew:hover { background: rgba(255, 255, 255, 0.08); }
+.mc-next-name { font-weight: 700; font-size: 0.875rem; }
+.mc-next-meta { font-size: 0.75rem; color: #c9d8f5; margin-top: 0.15rem; }
+.mc-badge { display: inline-block; margin-left: 0.4rem; padding: 0 0.4rem; border-radius: 0.75rem; background: #e5484d; color: #ffffff; font-size: 0.6875rem; font-weight: 700; }
+
+.mc-crew { align-items: center; gap: 0.6rem; margin-bottom: 0.25rem; }
+.mc-avatar { width: 2.25rem; height: 2.25rem; border-radius: 50%; background: #7fa6e8; color: #0e2452; font-weight: 700; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+.mc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.mc-crew-text { display: flex; flex-direction: column; }
+.mc-crew-name { font-weight: 700; font-size: 0.875rem; }
+.mc-crew-role { font-size: 0.75rem; color: #c9d8f5; }
+
+.mc-bar-row { display: grid; grid-template-columns: 6.5rem 1fr 2.25rem; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; font-size: 0.75rem; }
+.mc-bar-label { color: #c9d8f5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mc-bar { height: 0.4rem; background: rgba(201, 216, 245, 0.2); border-radius: 0.2rem; overflow: hidden; }
+.mc-bar-fill { display: block; height: 100%; background: #7fa6e8; border-radius: 0.2rem; }
+.mc-bar-count { text-align: right; color: #ffffff; font-weight: 600; }

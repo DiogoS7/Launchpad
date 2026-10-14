@@ -1,0 +1,104 @@
+<template>
+    <article class="mc">
+        <header class="mc-header">
+            <svg class="mc-logo" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2c3 2.6 4.2 7 3.4 12.4L15 17H9l-.4-2.6C7.8 9 9 4.6 12 2z" fill="#ffffff"/>
+                <circle cx="12" cy="9" r="2" fill="#0B3D91"/>
+                <path d="M9 13l-3 4v2l3.2-2M15 13l3 4v2l-3.2-2" fill="#E5484D"/>
+                <path d="M11 18h2l-1 4z" fill="#FFB547"/>
+            </svg>
+            <h2 class="mc-title">Mission Control</h2>
+        </header>
+
+        <template lwc:if={isLoaded}>
+            <section class="mc-countdown">
+                <div class="mc-countdown-big">{countdown.big}</div>
+                <div class="mc-countdown-small">{countdown.small}</div>
+            </section>
+
+            <ol class="mc-stages">
+                <template for:each={stages} for:item="stage">
+                    <li key={stage.key} class={stage.cls}>
+                        <span class="stage-dot"></span>
+                        <span class="stage-label">{stage.label}</span>
+                    </li>
+                </template>
+            </ol>
+
+            <section class="mc-gauge-row">
+                <div class="mc-gauge" aria-label="Onboarding progress">
+                    <div class="mc-track">
+                        <div class="mc-fill" style={fillStyle}></div>
+                    </div>
+                    <div class="mc-rocket" style={rocketStyle}>
+                        <svg viewBox="0 0 32 48" aria-hidden="true">
+                            <path d="M16 1c6 5 8 14 6.6 25L22 34H10l-.6-8C8 15 10 6 16 1z" fill="#ffffff" stroke="#C9D8F5" stroke-width="1"/>
+                            <path d="M16 1c3 2.5 5 6 5.8 10H10.2C11 7 13 3.5 16 1z" fill="#E5484D"/>
+                            <circle cx="16" cy="18" r="4" fill="#0B3D91" stroke="#7FA6E8" stroke-width="1.5"/>
+                            <path d="M10 26l-5 7v4l5.4-3M22 26l5 7v4l-5.4-3" fill="#E5484D"/>
+                            <path d="M13 35h6l-3 11z" fill="#FFB547"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mc-gauge-text">
+                    <div class="mc-pct">{progressPct}<span>%</span></div>
+                    <div class="mc-sub">{taskSummary}</div>
+                </div>
+            </section>
+
+            <section class="mc-block">
+                <h3 class="mc-block-title">Next up</h3>
+                <template lwc:if={nextTask}>
+                    <button class="mc-next" onclick={openTask}>
+                        <span class="mc-next-name">{nextTask.name}</span>
+                        <span class="mc-next-meta">
+                            <template lwc:if={nextTask.assignee}>{nextTask.assignee} · </template>{nextTask.dueLabel}
+                            <template lwc:if={nextTask.overdue}><span class="mc-badge">Overdue</span></template>
+                        </span>
+                    </button>
+                </template>
+                <template lwc:elseif={allDone}>
+                    <p class="mc-empty">All tasks complete. Ready for landing.</p>
+                </template>
+                <template lwc:else>
+                    <p class="mc-empty">Tasks appear when the plan starts.</p>
+                </template>
+            </section>
+
+            <template lwc:if={hasCrew}>
+                <section class="mc-block">
+                    <h3 class="mc-block-title">Crew</h3>
+                    <template for:each={crew} for:item="member">
+                        <button key={member.id} class="mc-crew" data-id={member.id} onclick={openUser}>
+                            <span class="mc-avatar">
+                                <template lwc:if={member.photo}><img src={member.photo} alt={member.name}/></template>
+                                <template lwc:else>{member.initials}</template>
+                            </span>
+                            <span class="mc-crew-text">
+                                <span class="mc-crew-name">{member.name}</span>
+                                <span class="mc-crew-role">{member.role}<template lwc:if={member.title}> · {member.title}</template></span>
+                            </span>
+                        </button>
+                    </template>
+                </section>
+            </template>
+
+            <template lwc:if={hasBreakdown}>
+                <section class="mc-block">
+                    <h3 class="mc-block-title">Systems check</h3>
+                    <template for:each={breakdown} for:item="cat">
+                        <div key={cat.name} class="mc-bar-row">
+                            <span class="mc-bar-label">{cat.name}</span>
+                            <span class="mc-bar"><span class="mc-bar-fill" style={cat.style}></span></span>
+                            <span class="mc-bar-count">{cat.label}</span>
+                        </div>
+                    </template>
+                </section>
+            </template>
+        </template>
+
+        <template lwc:elseif={error}>
+            <p class="mc-empty">Mission Control could not load this plan.</p>
+        </template>
+    </article>
+</template>

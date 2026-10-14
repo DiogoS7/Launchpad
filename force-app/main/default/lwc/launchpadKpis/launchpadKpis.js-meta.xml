@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Launchpad command centre: KPI tiles and plans launching soon, computed from the UI API GraphQL adapter (no Apex). Respects the viewer's sharing.</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Launchpad KPIs</masterLabel>
+    <targets>
+        <target>lightning__HomePage</target>
+        <target>lightning__AppPage</target>
+    </targets>
+</LightningComponentBundle>

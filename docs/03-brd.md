@@ -51,7 +51,7 @@ Launchpad is a Salesforce application that gives every new hire a single onboard
 | AS-01 | Assumption | All stakeholders work in Salesforce with their own user |
 | AS-02 | Decision | Tool guides are a custom object, not Salesforce Knowledge (see D3) |
 | CO-01 | Constraint | Built in a free Developer Edition org; user licences are limited, so demo users must be planned (check Setup → Company Information) |
-| CO-02 | Constraint | v1 is declarative only: objects, fields, Flows, validation rules, Lightning pages, reports |
+| CO-02 | Constraint | v1 business logic is declarative only: objects, fields, Flows, validation rules, reports. No Apex. User-interface components may use Lightning Web Components on Lightning Data Service (see D8) |
 | CO-03 | Constraint | All configuration is retrieved into source control (GitHub) |
 
 ## 5. Functional requirements
@@ -310,3 +310,4 @@ Onboarding plans use a **Private** organisation-wide default. Flow SH-01 gives t
 | D5 (closes OI-03) | Plan sharing through Flow-created manual shares (SH-01) | Sharing rules cannot target users named in lookup fields, and v1 has no Apex (CO-02) | Manual shares are removed if the plan owner changes; re-saving a participant restores them |
 | D6 | AU-02 and AU-06 use scheduled paths instead of nightly scheduled Flows | Reminders are booked per record and cancelled automatically when the work is done | Timing is approximate (minutes) |
 | D7 | Project Lead is required on the page layout, not on the field | Lookups to User cannot be required at field level in Salesforce | Records created by import or automation could omit it; a validation rule can enforce it later |
+| D8 | Two Lightning Web Components (Mission Control, Command Centre) for the interface, using Lightning Data Service and the UI API GraphQL adapter, with no Apex | Gives new hires and HR an at-a-glance view that standard components cannot (progress visual, countdown, next task, KPIs with targets); data access stays declarative and respects sharing and field-level security | Adds JavaScript to maintain; KPIs are computed client-side over the first 200 records, which is fine for Atlântica's volume (8–10 hires a month) but would need a server-side aggregate at larger scale |

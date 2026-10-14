@@ -6,7 +6,7 @@
 
 **Employee onboarding on Salesforce, from role preparation to independence.**
 
-Launchpad is a Salesforce application for a fictional Lisbon IT consultancy, Atlântica Consulting. It started as a business analysis exercise: map how onboarding works today, find where it breaks, redesign the process, and then build the redesign on the Salesforce Platform with declarative tools only (no Apex).
+Launchpad is a Salesforce application for a fictional Lisbon IT consultancy, Atlântica Consulting. It started as a business analysis exercise: map how onboarding works today, find where it breaks, redesign the process, and then build the redesign on the Salesforce Platform with declarative tools for all business logic (no Apex), with two custom Lightning Web Components for the interface.
 
 ![Onboarding plan](docs/screenshots/01-plan-record.png)
 
@@ -46,6 +46,10 @@ Every new hire gets one **onboarding plan** with an owner for each step:
 |---|---|
 | ![Employee view](docs/screenshots/05-employee-view.png) | ![Dashboard](docs/screenshots/04-dashboard.png) |
 
+**Command Centre**: live KPIs against the 21-day target, and a launch watchlist that flags plans still missing a buddy or a Role Brief.
+
+![Command Centre](docs/screenshots/07-command-centre.png)
+
 ## Business analysis
 
 The project is documented the way a client engagement would be. Each document builds on the previous one, and every requirement traces back to a pain point.
@@ -58,7 +62,7 @@ The project is documented the way a client engagement would be. Each document bu
 
 ## What's built
 
-Everything is declarative and stored in this repository as Salesforce metadata, so the whole app can be deployed to a fresh org.
+All business logic is declarative (no Apex), and everything is stored in this repository as Salesforce metadata, so the whole app can be deployed to a fresh org.
 
 | Area | Components |
 |---|---|
@@ -67,7 +71,8 @@ Everything is declarative and stored in this repository as Salesforce metadata, 
 | **Data quality** | 7 validation rules enforcing the plan lifecycle (Draft → Ready → In Progress → Completed) |
 | **Security** | Private sharing on plans, Flow-created share records for each participant, 3 permission sets (HR, Manager, Employee), and a **custom permission** checked in validation rules to protect required fields |
 | **Reporting** | 2 custom report types, 4 reports, and a dynamic dashboard that respects each viewer's access |
-| **User experience** | Lightning app with a custom home page (My Tasks, Active Plans, Tool Guides), a **Path** with stage-by-stage guidance on every plan, one-click quick actions (Start Plan, Confirm Role Brief, Mark Complete), readable record titles and progress bars, list views per object, and help text on every field |
+| **Lightning Web Components** | **Mission Control**: a live panel on every plan with a rocket that climbs as tasks are completed, a launch countdown, the stage timeline, the next open task, the crew (buddy and manager) and a per-category systems check, built on Lightning Data Service. **Command Centre**: KPI tiles and a launch watchlist that flags plans missing a buddy or Role Brief, built on the UI API GraphQL adapter. Neither uses Apex, so both respect each viewer's sharing |
+| **User experience** | Tabbed plan page (Overview, Tasks, Role Brief, History) built with **Dynamic Forms**, including a completion section that only appears once the plan is in progress; a **Path** with stage-by-stage guidance; one-click quick actions (Start Plan, Confirm Role Brief, Mark Complete); a home page with the Command Centre, the HR dashboard, My Tasks and Overdue Tasks; readable record titles, progress bars and list views |
 
 ![Task generation Flow](docs/screenshots/06-flow-builder.png)
 

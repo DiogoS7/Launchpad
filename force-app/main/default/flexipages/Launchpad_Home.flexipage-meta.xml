@@ -5,10 +5,16 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p&gt;&lt;b&gt;Welcome to Launchpad.&lt;/b&gt; Your open onboarding tasks are on the left and the plans you are part of are on the right. Every tool task links to a step-by-step guide.&lt;/p&gt;</value>
+                    <value>&lt;p style="font-size:1rem"&gt;&lt;b&gt;Welcome to Launchpad.&lt;/b&gt; Your open tasks are on the left, the plans you are part of on the right. Every tool task links to a step-by-step guide.&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>welcome</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>c:launchpadKpis</componentName>
+                <identifier>kpis</identifier>
             </componentInstance>
         </itemInstances>
         <name>top</name>
@@ -55,10 +61,42 @@
                 <identifier>activePlans</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>entityName</name>
+                    <value>Onboarding_Task__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filterName</name>
+                    <value>Overdue_Tasks</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>pageSize</name>
+                    <value>5</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:filterListCard</componentName>
+                <identifier>overdueTasks</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>bottomRight</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>dashboardName</name>
+                    <value>Launchpad_Onboarding_Overview</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>height</name>
+                    <value>600</value>
+                </componentInstanceProperties>
+                <componentName>desktopDashboards:embeddedDashboard</componentName>
+                <identifier>dashboard</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
