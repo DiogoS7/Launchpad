@@ -59,6 +59,7 @@ The project is documented the way a client engagement would be. Each document bu
 | [01 · AS-IS Process](docs/01-as-is-process.md) | Stakeholders, current process diagram, pain points, baseline metrics |
 | [02 · TO-BE Process](docs/02-to-be-process.md) | Redesigned process, roles, pain-point traceability, target metrics, release phasing |
 | [03 · Business Requirements](docs/03-brd.md) | 25 functional requirements, 12 user stories with acceptance criteria, data model, automation, security model, and the design decisions made during the build |
+| [04 · Agent Requirements](docs/04-agent-requirements.md) | Release v2: the Agentforce onboarding assistant's requirements, topics and actions, user stories and acceptance test set |
 
 ## What's built
 
