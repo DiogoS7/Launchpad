@@ -115,3 +115,7 @@ Each release lines up with a certification on my roadmap: Platform App Builder a
 ## Author
 
 **Diogo Santos** · Business Analyst / Consultant · [LinkedIn](https://www.linkedin.com/in/diogo-santos-b22801243) · [GitHub](https://github.com/DiogoS7)
+
+## License
+
+[MIT](LICENSE) © Diogo Santos
