@@ -104,11 +104,13 @@ Then open the **Launchpad** app from the App Launcher. To test the other persona
 
 ## Roadmap
 
+Launchpad is delivered in releases, each tracked as a GitHub milestone with its own issues. See the [changelog](CHANGELOG.md) for what each release contains.
+
 | Release | Scope | Status |
 |---|---|---|
-| v1 · Core app | Everything above | ✅ Done |
-| v2 · Agentforce | An employee agent that answers onboarding and tool questions from the Tool Guides and tells new hires what's next on their plan | Planned |
-| v3 · Claude | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Planned |
+| [v1 · Core app](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0.0) | Everything above | ✅ Released as v1.0.0 |
+| [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | An employee agent that answers onboarding and tool questions from the Tool Guides and tells new hires what's next on their plan. [Requirements](docs/04-agent-requirements.md) | Planned |
+| [v3 · Claude](https://github.com/DiogoS7/Launchpad/milestone/3) | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Planned |
 
 Each release lines up with a certification on my roadmap: Platform App Builder and Business Analyst for v1, Agentblazer and Agentforce Specialist for v2.
 
