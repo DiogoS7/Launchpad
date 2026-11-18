@@ -4,7 +4,7 @@ Launchpad is delivered in releases. Each one starts with business analysis, is b
 
 | Release | Theme | Status | Requirements |
 |---|---|---|---|
-| [v1.0.0](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0.0) | Core app | ✅ Released | [03 · BRD](docs/03-brd.md) |
+| [v1.0](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0) | Core app | ✅ Released | [03 · BRD](docs/03-brd.md) |
 | [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | Employee onboarding agent | Planned | [04 · Agent Requirements](docs/04-agent-requirements.md) |
 | [v3 · Claude](https://github.com/DiogoS7/Launchpad/milestone/3) | Claude-assisted features | Planned | To be written (05) |
 
@@ -20,7 +20,7 @@ Done so far:
 
 Planned scope: Claude-assisted features, starting with drafting a first Role Brief from a job description for the hiring manager to review.
 
-## [1.0.0] · Core app
+## [1.0] · Core app
 
 The first release: Atlântica Consulting's onboarding process redesigned and built on Salesforce, with all business logic declarative (no Apex).
 
