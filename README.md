@@ -110,7 +110,7 @@ Launchpad is delivered in releases, each tracked as a GitHub milestone with its 
 | Release | Scope | Status |
 |---|---|---|
 | [v1 · Core app](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0) | Everything above | ✅ Released as v1.0 |
-| [v1.1 · Apex managed sharing](https://github.com/DiogoS7/Launchpad/milestone/4) | Plan sharing moved from Flow to Apex managed sharing, so participants keep access when a plan's owner changes | In progress |
+| [v1.1 · Apex managed sharing](https://github.com/DiogoS7/Launchpad/releases/tag/v1.1) | Plan sharing moved from Flow to Apex managed sharing, so participants keep access when a plan's owner changes | ✅ Released as v1.1 |
 | [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | An employee agent that answers onboarding and tool questions from the Tool Guides and tells new hires what's next on their plan. [Requirements](docs/04-agent-requirements.md) | Planned |
 | [v3 · Claude](https://github.com/DiogoS7/Launchpad/milestone/3) | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Planned |
 

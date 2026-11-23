@@ -5,27 +5,9 @@ Launchpad is delivered in releases. Each one starts with business analysis, is b
 | Release | Theme | Status | Requirements |
 |---|---|---|---|
 | [v1.0](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0) | Core app | ✅ Released | [03 · BRD](docs/03-brd.md) |
-| [v1.1 · Apex managed sharing](https://github.com/DiogoS7/Launchpad/milestone/4) | Reliable plan sharing | In progress | [03 · BRD, D9](docs/03-brd.md#12-design-decisions-made-during-build) |
+| [v1.1](https://github.com/DiogoS7/Launchpad/releases/tag/v1.1) | Apex managed sharing | ✅ Released | [03 · BRD, D9](docs/03-brd.md#12-design-decisions-made-during-build) |
 | [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | Employee onboarding agent | Planned | [04 · Agent Requirements](docs/04-agent-requirements.md) |
 | [v3 · Claude](https://github.com/DiogoS7/Launchpad/milestone/3) | Claude-assisted features | Planned | To be written (05) |
-
-## [Unreleased] · v1.1 · Apex managed sharing
-
-Fixes the trade-off recorded in decision D5: v1.0 shared plans with Flow-created manual shares, which Salesforce deletes when a plan's owner changes.
-
-### Changed
-- Plan sharing (SH-01) now uses Apex managed sharing with a `Launchpad_Participant__c` sharing reason, so participants keep Edit access when the owner changes
-- Changing a project's lead now re-shares every plan on that project with the new lead
-- BRD v0.3: constraint CO-02 is now "declarative first", with decision D9 recording the one place Apex is used
-
-### Added
-- `OnboardingPlanSharing` service class, with thin triggers on Onboarding Plan and Project
-- `OnboardingPlanSharingRecalc` batch, to register as the object's Apex sharing recalculation class
-- `OnboardingPlanSharingTest`, covering participant, owner and project-lead changes, the recalculation batch and a 200-plan bulk insert
-- Scripts to rebuild plan sharing and remove the v1.0 manual shares
-
-### Removed
-- The `Onboarding_Plan_Share_With_Participants` Flow
 
 ## [Unreleased] · v2 · Agentforce
 
@@ -38,6 +20,24 @@ Done so far:
 ## [Unreleased] · v3 · Claude
 
 Planned scope: Claude-assisted features, starting with drafting a first Role Brief from a job description for the hiring manager to review.
+
+## [1.1] · Apex managed sharing
+
+Fixes the trade-off recorded in decision D5: v1.0 shared plans with Flow-created manual shares, which Salesforce deletes when a plan's owner changes.
+
+### Changed
+- Plan sharing (SH-01) now uses Apex managed sharing with a `Launchpad_Participant__c` sharing reason, so participants keep Edit access when the owner changes
+- Changing a project's lead now re-shares every plan on that project with the new lead
+- BRD v0.3: constraint CO-02 is now "declarative first", with decision D9 recording the one place Apex is used
+
+### Added
+- `OnboardingPlanSharing` service class, with thin triggers on Onboarding Plan and Project
+- `OnboardingPlanSharingRecalc` batch, to register as the object's Apex sharing recalculation class
+- `OnboardingPlanSharingTest`: 10 tests covering participant, owner and project-lead changes, the recalculation batch and a 200-plan bulk insert, with 100% coverage
+- Scripts to rebuild plan sharing and remove the v1.0 manual shares
+
+### Removed
+- The `Onboarding_Plan_Share_With_Participants` Flow
 
 ## [1.0] · Core app
 
