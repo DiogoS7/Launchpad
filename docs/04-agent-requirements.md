@@ -63,9 +63,9 @@ A fourth group is out of reach: questions about the client project itself, compa
 |---|---|---|
 | AS-03 | Assumption | Agentforce can be enabled in the Developer Edition org, and the licences it shows are enough for an employee agent. To be verified first (OI-04). |
 | AS-04 | Assumption | The three seeded Tool Guides (timesheets, expenses, IT tickets) are enough to demonstrate grounding. More guides can be added as data, without changing the agent. |
-| CO-03 | Constraint | Agent actions follow the v1 rule: declarative only. Actions are autolaunched Flows, not Apex (extends CO-02). |
-| CO-04 | Constraint | The agent must never return data the user couldn't see on their own plan page. Actions run in the user's context, so plan sharing (SH-01) and field-level security still apply. |
-| CO-05 | Constraint | Free Developer Edition limits apply. Agent usage and generative AI request limits are lower than in production, so testing must be deliberate. |
+| CO-04 | Constraint | Agent actions follow CO-02, declarative first: they are autolaunched Flows, with Apex only if a Flow cannot do the job, recorded as a design decision. |
+| CO-05 | Constraint | The agent must never return data the user couldn't see on their own plan page. Actions run in the user's context, so plan sharing (SH-01) and field-level security still apply. |
+| CO-06 | Constraint | Free Developer Edition limits apply. Agent usage and generative AI request limits are lower than in production, so testing must be deliberate. |
 
 ## 6. Functional requirements
 
@@ -132,7 +132,7 @@ A fourth group is out of reach: questions about the client project itself, compa
 ### Guardrails
 
 - Answers only from Launchpad data; no general-knowledge answers to tool questions (FR-28)
-- Never reveals another employee's plan or tasks (CO-04)
+- Never reveals another employee's plan or tasks (CO-05)
 - Doesn't change records in v2 (section 4)
 - Doesn't give advice on pay, contracts or personal matters; always hands off to HR
 
