@@ -6,7 +6,7 @@
 
 **Employee onboarding on Salesforce, from role preparation to independence.**
 
-Launchpad is a Salesforce application for a fictional Lisbon IT consultancy, Atlântica Consulting. It started as a business analysis exercise: map how onboarding works today, find where it breaks, redesign the process, and then build the redesign on the Salesforce Platform with declarative tools for all business logic (no Apex), with two custom Lightning Web Components for the interface.
+Launchpad is a Salesforce application for a fictional Lisbon IT consultancy, Atlântica Consulting. It started as a business analysis exercise: map how onboarding works today, find where it breaks, redesign the process, and then build the redesign on the Salesforce Platform declarative first: Flows and validation rules for the business logic, two custom Lightning Web Components for the interface, and Apex only where the platform has no reliable declarative option (plan sharing).
 
 ![Onboarding plan](docs/screenshots/01-plan-record.png)
 
@@ -63,14 +63,15 @@ The project is documented the way a client engagement would be. Each document bu
 
 ## What's built
 
-All business logic is declarative (no Apex), and everything is stored in this repository as Salesforce metadata, so the whole app can be deployed to a fresh org.
+Business logic is declarative first, with Apex in one place, plan sharing, where Flow can't keep access reliable (see [decision D9](docs/03-brd.md#12-design-decisions-made-during-build)). Everything is stored in this repository as Salesforce metadata, so the whole app can be deployed to a fresh org.
 
 | Area | Components |
 |---|---|
 | **Data model** | 5 custom objects: Onboarding Plan, Onboarding Task (master-detail with roll-up summaries), Task Template, Project, Tool Guide. Shared global value set for task categories. |
-| **Automation** | 7 record-triggered Flows: manager prep task, task generation at plan start, project handover tasks, completed-date stamping, plan sharing, and two reminders using **scheduled paths** |
+| **Automation** | 6 record-triggered Flows: manager prep task, task generation at plan start, project handover tasks, completed-date stamping, and two reminders using **scheduled paths** |
+| **Apex** | `OnboardingPlanSharing` service with thin triggers on Onboarding Plan and Project, a `Launchpad_Participant__c` sharing reason, a recalculation batch, and a test class covering participant changes, owner changes, project-lead changes and a 200-plan bulk insert |
 | **Data quality** | 7 validation rules enforcing the plan lifecycle (Draft → Ready → In Progress → Completed) |
-| **Security** | Private sharing on plans, Flow-created share records for each participant, 3 permission sets (HR, Manager, Employee), and a **custom permission** checked in validation rules to protect required fields |
+| **Security** | Private sharing on plans, **Apex managed sharing** that gives each participant Edit access and survives owner changes, 3 permission sets (HR, Manager, Employee), and a **custom permission** checked in validation rules to protect required fields |
 | **Reporting** | 2 custom report types, 4 reports, and a dynamic dashboard that respects each viewer's access |
 | **Lightning Web Components** | **Mission Control**: a live panel on every plan with a rocket that climbs as tasks are completed, a launch countdown, the stage timeline, the next open task, the crew (buddy and manager) and a per-category systems check, built on Lightning Data Service. **Command Centre**: KPI tiles and a launch watchlist that flags plans missing a buddy or Role Brief, built on the UI API GraphQL adapter. Neither uses Apex, so both respect each viewer's sharing |
 | **User experience** | Tabbed plan page (Overview, Tasks, Role Brief, History) built with **Dynamic Forms**, including a completion section that only appears once the plan is in progress; a **Path** with stage-by-stage guidance; one-click quick actions (Start Plan, Confirm Role Brief, Mark Complete); a home page with the Command Centre, the HR dashboard, My Tasks and Overdue Tasks; readable record titles, progress bars and list views |
@@ -109,10 +110,11 @@ Launchpad is delivered in releases, each tracked as a GitHub milestone with its 
 | Release | Scope | Status |
 |---|---|---|
 | [v1 · Core app](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0) | Everything above | ✅ Released as v1.0 |
+| [v1.1 · Apex managed sharing](https://github.com/DiogoS7/Launchpad/milestone/4) | Plan sharing moved from Flow to Apex managed sharing, so participants keep access when a plan's owner changes | In progress |
 | [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | An employee agent that answers onboarding and tool questions from the Tool Guides and tells new hires what's next on their plan. [Requirements](docs/04-agent-requirements.md) | Planned |
 | [v3 · Claude](https://github.com/DiogoS7/Launchpad/milestone/3) | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Planned |
 
-Each release lines up with a certification on my roadmap: Platform App Builder and Business Analyst for v1, Agentblazer and Agentforce Specialist for v2.
+Each release lines up with a certification on my roadmap: Platform App Builder and Business Analyst for v1, Platform Developer I for v1.1, Agentblazer and Agentforce Specialist for v2.
 
 ## Author
 

@@ -3,7 +3,7 @@
 **Project:** Launchpad
 **Document:** 03 · Business Requirements Document (BRD)
 **Author:** Diogo Santos
-**Status:** v0.2 (updated after build) · Scope: Release v1 (Core app)
+**Status:** v0.3 (updated for v1.1) · Scope: Release v1 (Core app) and v1.1 (Apex managed sharing)
 **Depends on:** [01 · AS-IS](01-as-is-process.md) · [02 · TO-BE](02-to-be-process.md)
 
 ---
@@ -12,7 +12,7 @@
 
 Atlântica Consulting's onboarding handles contracts and equipment well, but nobody owns the integration of new hires into their role and project. Responsibilities are explained verbally, project knowledge is passed on ad hoc, internal tools are learned by trial and error, and nothing is tracked after day one.
 
-Launchpad is a Salesforce application that gives every new hire a single onboarding plan with an owner for each step, from role preparation before day one until the new hire works independently on a project. Release v1 is built entirely with declarative Salesforce features (no Apex).
+Launchpad is a Salesforce application that gives every new hire a single onboarding plan with an owner for each step, from role preparation before day one until the new hire works independently on a project. Release v1 is built entirely with declarative Salesforce features. Release v1.1 adds Apex in one place, plan sharing, where the platform offers no declarative way to keep shares reliable (see D9).
 
 ## 2. Business objectives
 
@@ -42,7 +42,7 @@ Launchpad is a Salesforce application that gives every new hire a single onboard
 - Agentforce agent (Release v2)
 - Claude-assisted features (Release v3)
 - Integration with HR or IT systems
-- Apex code
+- Apex code (v1.0; v1.1 adds Apex for plan sharing only, see D9)
 
 ## 4. Assumptions and constraints
 
@@ -51,7 +51,7 @@ Launchpad is a Salesforce application that gives every new hire a single onboard
 | AS-01 | Assumption | All stakeholders work in Salesforce with their own user |
 | AS-02 | Decision | Tool guides are a custom object, not Salesforce Knowledge (see D3) |
 | CO-01 | Constraint | Built in a free Developer Edition org; user licences are limited, so demo users must be planned (check Setup → Company Information) |
-| CO-02 | Constraint | v1 business logic is declarative only: objects, fields, Flows, validation rules, reports. No Apex. User-interface components may use Lightning Web Components on Lightning Data Service (see D8) |
+| CO-02 | Constraint | Business logic is declarative first: objects, fields, Flows, validation rules, reports. Apex is used only where the platform has no reliable declarative option, and each use is recorded as a design decision (v1.1: plan sharing, D9). User-interface components may use Lightning Web Components on Lightning Data Service (see D8) |
 | CO-03 | Constraint | All configuration is retrieved into source control (GitHub) |
 
 ## 5. Functional requirements
@@ -271,7 +271,7 @@ Custom object rather than the standard Task, so that it can be the detail side o
 | AU-04 | Generate handover tasks for project lead when project is assigned | Record-triggered Flow | FR-18 |
 | AU-05 | Stamp completed date when a task is completed | Record-triggered Flow | FR-15 |
 | AU-06 | Email the assignee the day after an open task's due date | Record-triggered Flow, scheduled path | FR-14 |
-| SH-01 | Share the plan (Edit) with the new hire, manager, buddy and project lead | Record-triggered Flow creating share records | NFR-01 |
+| SH-01 | Share the plan (Edit) with the new hire, manager, buddy and project lead, and keep the shares up to date when any of them, the project lead or the plan owner changes | Apex managed sharing: triggers on Onboarding Plan and Project, `OnboardingPlanSharing` class, `Launchpad_Participant__c` sharing reason and `OnboardingPlanSharingRecalc` batch (v1.1, D9). Record-triggered Flow with manual shares in v1.0 | NFR-01 |
 | VR-01 | Ready requires Role Brief and buddy | Validation rule | FR-05 |
 | VR-02 | In Progress requires Ready and admin phase complete | Validation rule | FR-08 |
 | VR-03 | Completed requires no open tasks, independence date and assessment | Validation rule | FR-19, FR-20 |
@@ -286,7 +286,7 @@ Custom object rather than the standard Task, so that it can be the detail side o
 | Hiring Manager / Project Lead | `Launchpad_Manager` | Create and edit plans and projects; read templates |
 | New Hire / Buddy | `Launchpad_Employee` | Read plans shared with them; edit tasks assigned to them |
 
-Onboarding plans use a **Private** organisation-wide default. Flow SH-01 gives the new hire, hiring manager, buddy and project lead Edit access with manual share records whenever one of them changes. Tasks inherit access from their plan through the master-detail relationship. Because field-level security cannot protect required fields, the custom permission *Launchpad: Manage Plans* (HR and Manager only) is checked by validation rules VR-04 and VR-05. Tool guides and templates are Public Read Only.
+Onboarding plans use a **Private** organisation-wide default. SH-01 gives the new hire, hiring manager, buddy and project lead Edit access with Apex managed shares (sharing reason *Launchpad Participant*), rebuilt whenever one of them, the project lead or the owner changes. Unlike the manual shares used in v1.0, these survive an owner change, and Salesforce can rebuild them with the registered recalculation class. Tasks inherit access from their plan through the master-detail relationship. Because field-level security cannot protect required fields, the custom permission *Launchpad: Manage Plans* (HR and Manager only) is checked by validation rules VR-04 and VR-05. Tool guides and templates are Public Read Only.
 
 ## 11. Requirements traceability
 
@@ -307,7 +307,8 @@ Onboarding plans use a **Private** organisation-wide default. Flow SH-01 gives t
 | OI-01 → closed | Six demo users on Salesforce Platform licences, one per persona | The org has 6 unused Platform licences, which cover custom objects, Flows and reports | None for v1 |
 | D3 (closes OI-02) | Tool guides are a custom `Tool_Guide__c` object, not Salesforce Knowledge | Fully deployable from source control (NFR-05), no extra feature licences, simpler permissions | Loses Knowledge features such as article versioning and data categories; the v2 agent can still be grounded on the guide records |
 | D4 | One overdue reminder per task, the day after the due date, instead of daily | Avoids notification fatigue; the HR dashboard still shows every overdue task | Long-overdue tasks rely on the dashboard rather than repeated emails |
-| D5 (closes OI-03) | Plan sharing through Flow-created manual shares (SH-01) | Sharing rules cannot target users named in lookup fields, and v1 has no Apex (CO-02) | Manual shares are removed if the plan owner changes; re-saving a participant restores them |
+| D5 (closes OI-03) | Plan sharing through Flow-created manual shares (SH-01) | Sharing rules cannot target users named in lookup fields, and v1 has no Apex (CO-02) | Manual shares are removed if the plan owner changes; re-saving a participant restores them. **Superseded by D9 in v1.1** |
 | D6 | AU-02 and AU-06 use scheduled paths instead of nightly scheduled Flows | Reminders are booked per record and cancelled automatically when the work is done | Timing is approximate (minutes) |
 | D7 | Project Lead is required on the page layout, not on the field | Lookups to User cannot be required at field level in Salesforce | Records created by import or automation could omit it; a validation rule can enforce it later |
 | D8 | Two Lightning Web Components (Mission Control, Command Centre) for the interface, using Lightning Data Service and the UI API GraphQL adapter, with no Apex | Gives new hires and HR an at-a-glance view that standard components cannot (progress visual, countdown, next task, KPIs with targets); data access stays declarative and respects sharing and field-level security | Adds JavaScript to maintain; KPIs are computed client-side over the first 200 records, which is fine for Atlântica's volume (8–10 hires a month) but would need a server-side aggregate at larger scale |
+| D9 (v1.1, supersedes D5) | Plan sharing moves from Flow-created manual shares to Apex managed sharing with a `Launchpad_Participant__c` sharing reason. The constraint CO-02 is relaxed for this one case | Manual shares are deleted by Salesforce when a record's owner changes, which silently removed participants' access (the D5 trade-off). Apex managed shares with a sharing reason are kept on an owner change, can be rebuilt by a registered recalculation batch, and also follow a change of project lead on the Project record, which the Flow did not. Sharing rules still cannot target users named in lookups, so there is no declarative alternative | Introduces Apex to maintain: one service class, two thin triggers, a batch class and a test class (bulk-tested with 200 plans). Admins must register the recalculation class once per org. Existing v1.0 manual shares are removed with a one-off script |
