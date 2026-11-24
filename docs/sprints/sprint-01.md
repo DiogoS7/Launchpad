@@ -28,7 +28,7 @@ Prove that Agentforce works in the Developer Edition org, and give the agent the
 
 | Sprint | Items | Points |
 | --- | --- | --- |
-| 2 · 8 – 21 Dec | [#5](https://github.com/DiogoS7/Launchpad/issues/5) Build the agent, [#7](https://github.com/DiogoS7/Launchpad/issues/7) Run the acceptance tests | 11 |
+| 2 · 8 – 21 Dec | [#5](https://github.com/DiogoS7/Launchpad/issues/5) Build the agent, [#7](https://github.com/DiogoS7/Launchpad/issues/7) Run the acceptance tests, [#14](https://github.com/DiogoS7/Launchpad/issues/14) Home page charts and demo data for the HR dashboard | 13 |
 | 3 · 22 Dec – 4 Jan | [#8](https://github.com/DiogoS7/Launchpad/issues/8) Store the agent in the repo and CI, [#9](https://github.com/DiogoS7/Launchpad/issues/9) Ship v2 | 8 |
 
 ## Sprint review
