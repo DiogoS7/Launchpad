@@ -60,6 +60,7 @@ The project is documented the way a client engagement would be. Each document bu
 | [02 · TO-BE Process](docs/02-to-be-process.md) | Redesigned process, roles, pain-point traceability, target metrics, release phasing |
 | [03 · Business Requirements](docs/03-brd.md) | 25 functional requirements, 12 user stories with acceptance criteria, data model, automation, security model, and the design decisions made during the build |
 | [04 · Agent Requirements](docs/04-agent-requirements.md) | Release v2: the Agentforce onboarding assistant's requirements, topics and actions, user stories and acceptance test set |
+| [How it's delivered: Scrum](docs/scrum.md) | Sprints, events, Definition of Ready and Done, story points and velocity, with a [record of each sprint](docs/sprints/) |
 
 ## What's built
 
@@ -105,13 +106,13 @@ Then open the **Launchpad** app from the App Launcher. To test the other persona
 
 ## Roadmap
 
-Launchpad is delivered in releases, each tracked as a GitHub milestone with its own issues. See the [changelog](CHANGELOG.md) for what each release contains.
+Launchpad is delivered in releases, each tracked as a GitHub milestone with its own issues. From v2 onwards, each release is built in two-week [Scrum sprints](docs/scrum.md): issues are estimated in story points and labelled with their sprint, and every sprint ends with a review and a retrospective. See the [changelog](CHANGELOG.md) for what each release contains.
 
 | Release | Scope | Status |
 |---|---|---|
 | [v1 · Core app](https://github.com/DiogoS7/Launchpad/releases/tag/v1.0) | Everything above | ✅ Released as v1.0 |
 | [v1.1 · Apex managed sharing](https://github.com/DiogoS7/Launchpad/releases/tag/v1.1) | Plan sharing moved from Flow to Apex managed sharing, so participants keep access when a plan's owner changes | ✅ Released as v1.1 |
-| [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | An employee agent that answers onboarding and tool questions from the Tool Guides and tells new hires what's next on their plan. [Requirements](docs/04-agent-requirements.md) | Planned |
+| [v2 · Agentforce](https://github.com/DiogoS7/Launchpad/milestone/2) | An employee agent that answers onboarding and tool questions from the Tool Guides and tells new hires what's next on their plan. [Requirements](docs/04-agent-requirements.md) | In progress · [Sprint 1](docs/sprints/sprint-01.md) |
 | [v3 · Claude](https://github.com/DiogoS7/Launchpad/milestone/3) | Claude-assisted features, such as drafting a first Role Brief from a job description for the manager to review | Planned |
 
 Each release lines up with a certification on my roadmap: Platform App Builder and Business Analyst for v1, Platform Developer I for v1.1, Agentblazer and Agentforce Specialist for v2.

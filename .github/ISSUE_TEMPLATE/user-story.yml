@@ -1,0 +1,35 @@
+name: User story
+description: A backlog item written from a user's point of view
+labels: []
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: Who needs it, what they need, and why.
+      value: |
+        **As** a ...
+        **I want** ...
+        **so that** ...
+    validations:
+      required: true
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Acceptance criteria
+      description: A checklist the Sprint Review can tick off.
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+  - type: input
+    id: requirements
+    attributes:
+      label: Requirements covered
+      description: IDs from the docs, for example FR-30, NFR-07, OI-04
+  - type: dropdown
+    id: points
+    attributes:
+      label: Estimate (story points)
+      options: ["1", "2", "3", "5", "8", "Too big: split it"]
