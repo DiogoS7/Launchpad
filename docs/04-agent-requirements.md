@@ -3,7 +3,7 @@
 **Project:** Launchpad
 **Document:** 04 · Agent Requirements
 **Author:** Diogo Santos
-**Status:** Draft v0.1 · Scope: Release v2 (Agentforce)
+**Status:** Draft v0.2 · Scope: Release v2 (Agentforce)
 **Depends on:** [02 · TO-BE](02-to-be-process.md) · [03 · BRD](03-brd.md)
 
 ---
@@ -61,7 +61,7 @@ A fourth group is out of reach: questions about the client project itself, compa
 
 | ID | Type | Statement |
 |---|---|---|
-| AS-03 | Assumption | Agentforce can be enabled in the Developer Edition org, and the licences it shows are enough for an employee agent. To be verified first (OI-04). |
+| AS-03 | Assumption | Agentforce can be enabled in the Developer Edition org, and the licences it shows are enough for an employee agent. **Verified on 24 Nov 2026 (OI-04 closed).** |
 | AS-04 | Assumption | The three seeded Tool Guides (timesheets, expenses, IT tickets) are enough to demonstrate grounding. More guides can be added as data, without changing the agent. |
 | CO-04 | Constraint | Agent actions follow CO-02, declarative first: they are autolaunched Flows, with Apex only if a Flow cannot do the job, recorded as a design decision. |
 | CO-05 | Constraint | The agent must never return data the user couldn't see on their own plan page. Actions run in the user's context, so plan sharing (SH-01) and field-level security still apply. |
@@ -213,11 +213,11 @@ These utterances become the agent's test set. They are run in the Agentforce tes
 
 | ID | Item | How it will be closed |
 |---|---|---|
-| OI-04 | Confirm Agentforce can be enabled in the Developer Edition org, and which licence or permission set the Platform-licence demo users need to use an employee agent | Enable it in Setup and test with the new-hire demo user before building anything else |
+| OI-04 | Confirm Agentforce can be enabled in the Developer Edition org, and which licence or permission set the Platform-licence demo users need to use an employee agent | **Closed, 24 Nov 2026.** Agentforce is on: Setup → Agentforce Agents offers New Agent, with Agentforce Data Library and Testing Center available. The org has 5 *Agentforce (Default)* and 5 *Agent platform builder* permission set licences. The `CopilotSalesforceUser` permission set (*Access Agentforce Default Agent*) was assigned to the new-hire demo user, Ana Ferreira, on a Salesforce Platform licence without errors. See BRD decisions D10 and D11 |
 | OI-05 | Grounding approach for Tool Guides: retrieve guide records through a Flow action, or index them as a data library | Prototype both with T-01 to T-04 and record the choice as a design decision |
 | OI-06 | Where the new hire opens the agent: the Agentforce panel in the Launchpad app, or a component on the home page next to the Command Centre | Decide after OI-04, based on what the org supports |
 | OI-07 | How to measure BO-02 in the demo, since there are no real survey results | Report the share of test utterances answered without a hand-off, alongside the assumed survey target |
 
 ## 13. Next step
 
-Close OI-04, then build the two Flow actions (AC-01, AC-02) and the agent's topics, and run the test set. Design decisions made during the build will be added to the BRD, section 12, as in v1.
+OI-04 is closed. Next: choose the grounding approach (OI-05), build the two Flow actions (AC-01, AC-02) and the agent's topics in the new Agentforce Builder, decide where new hires open the agent (OI-06), and run the test set. Design decisions made during the build will be added to the BRD, section 12, as in v1.
